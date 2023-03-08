@@ -8,6 +8,7 @@ interface View {
   logo: Logo;
   theme: Theme;
   post: PostSettings;
+  footer: Footer;
 }
 
 interface Theme {
@@ -16,6 +17,14 @@ interface Theme {
 
 interface PostSettings {
   postPreviewLength: Number;
+}
+
+interface Footer {
+  settings: {
+    copyrightInfo: string;
+    githubLink: string;
+    githubLinkOpensInNewTab: boolean;
+  } | null;
 }
 
 // Utility Components
@@ -35,16 +44,14 @@ interface Logo {
 // Components
 
 interface Post {
-  id: number;
-  title: String;
-  body: String;
-  userId: number;
+  post: { id: number; title: String; body: String; userId: number };
   settings: PostSettings;
+  isDarkStripe: boolean;
 }
 
 interface Posts {
-  posts: Post[];
-  settings: PostSettings;
+  posts: Post[] | null;
+  settings: PostSettings | null;
 }
 
 interface PostSettings {
