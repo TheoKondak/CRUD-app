@@ -1,8 +1,8 @@
 import axios from 'axios';
 const baseUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
 
-const getAll = () => {
-  const request = axios.get(baseUrl);
+const get = (query: string) => {
+  const request = axios.get(baseUrl + query);
   return request
     .then((response) => response.data)
     .catch((error) => {
@@ -132,7 +132,7 @@ const del = (id, notification = { message: 'No Message Selected', duration: 5000
 };
 
 export default {
-  getAll,
+  get,
   create,
   upd,
   del,
