@@ -56,6 +56,32 @@ TODO
 
 TODO
 
+```mermaid
+flowchart TD
+    
+    App --> createPost --> modalFormMode
+    App --> httpGet --> Posts
+    
+    Posts --> openPost --> modalDisplayMode --> Post
+    
+    Post --> quickEditPost --> modalFormMode
+    Post --> quickDeletePost --> deleteVerification
+
+    modalDisplayMode --> editPost --> modalFormMode
+    modalDisplayMode --> deletePost --> deleteVerification
+
+    modalFormMode --> onPostEditSave --> httpCreate
+    modalFormMode --> onPostEditCancel --> modalDisplayMode
+
+    onPostEditSave --> httpPut
+    deleteVerification --> httpDelete
+
+    httpCreate --> Notification
+    httpPut --> Notification
+    httpDelete --> Notification
+   
+```
+
 
 ## Technologies and Packages
 
