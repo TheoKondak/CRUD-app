@@ -1,12 +1,13 @@
-const Post = ({ post, settings }: Post) => {
+const Post = ({ post, settings, isDarkStripe }: Post) => {
   const { id, title, body, userId } = post;
-  // console.log(body.length);
+
+  console.log(settings.postPreviewLength);
   return (
-    <tr>
-      <td>{id}</td>
-      <td>{title}</td>
-      <td>{body.length > settings.ticketPreviewLength ? `${body.substring(0, settings.post.postPreviewLength)}...` : body}</td>
-      <td>{userId}</td>
+    <tr className={`${isDarkStripe ? 'bg-primary-transparent text-primary-900 dark:text-white' : 'bg-primary-600 text-white'}  `}>
+      <td className="p-2 pl-4">{id}</td>
+      <td className="p-2">{title}</td>
+      <td className="p-2">{body.length > settings.postPreviewLength ? `${body.substring(0, settings.postPreviewLength)}...` : body}</td>
+      <td className="p-2 pl-4">{userId}</td>
     </tr>
   );
 };
