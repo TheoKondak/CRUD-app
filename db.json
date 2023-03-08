@@ -1,23 +1,21 @@
 {
-"settings":{
+  "settings": {
+    "view": {
+      "logo": {
+        "src": ["./tapio-icon-low-key.svg", "tapio-icon-high-key.svg"],
+        "width": "114",
+        "height": "26",
+        "alt": "Tapio logo"
+      }
+    },
 
-  "view":{
-    "logo": {
-      "src": ["", ""],
-      "width": "114",
-      "height": "26",
-      "alt": "Tapio logo"
+    "post": {
+      "id": 0,
+      "title": "",
+      "content": "",
+      "createdDate": "",
+      "lastEditDate": ""
     }
-  }
-
-  "post": {
-    "id": 0,
-    "title": "",
-    "content": ""
-  }
-},
-"posts": [
-
-]
-
+  },
+  "posts": []
 }
