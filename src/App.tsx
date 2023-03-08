@@ -7,6 +7,7 @@ import postsService from './services/postsService';
 import Header from './components/Header';
 import Loading from './components/Loading';
 import Posts from './components/Posts';
+import Footer from './components/Footer';
 
 // CSS
 import './App.css';
@@ -27,11 +28,16 @@ function App() {
       setSettings(settings);
     });
   }, []);
+
+  // console.log(settings.view.footer);
+
   return (
-    <div className="App h-screen overflow-hidden bg-white dark:bg-primary-800">
+    <div className="App bg-white dark:bg-primary-800">
       {settings ? <Header logo={settings.view.logo} darkThemeByDefault={settings.view.theme.darkThemeByDefault} /> : <Loading />}
 
       {settings && posts ? <Posts posts={posts} settings={settings.view.post} /> : <Loading />}
+
+      {settings ? <Footer settings={settings.view.footer} /> : <Loading />}
     </div>
   );
 }

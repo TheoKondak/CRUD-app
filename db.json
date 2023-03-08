@@ -2,10 +2,7 @@
   "settings": {
     "view": {
       "logo": {
-        "src": [
-          "./tapio-icon-low-key.svg",
-          "./tapio-icon-high-key.svg"
-        ],
+        "src": ["./tapio-icon-low-key.svg", "./tapio-icon-high-key.svg"],
         "width": "30",
         "height": "30",
         "alt": "Tapio logo"
@@ -14,7 +11,12 @@
         "darkThemeByDefault": false
       },
       "post": {
-        "postPreviewLength": 40
+        "postPreviewLength": 20
+      },
+      "footer": {
+        "copyrightInfo": "Made With Love by Theo for Tapio",
+        "githubLink": "https://github.com/TheoKondak/CRUD-app",
+        "githubLinkOpensInNewTab": true
       }
     }
   },
