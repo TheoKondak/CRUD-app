@@ -43,10 +43,17 @@ interface Logo {
 
 // Components
 
-interface Post {
-  post: { id: number; title: String; body: String; userId: number };
+interface PostComponent {
+  post: Post;
   settings: PostSettings;
   isDarkStripe: boolean;
+}
+
+interface Post {
+  id: number;
+  title: String;
+  body: String;
+  userId: number;
 }
 
 interface Posts {

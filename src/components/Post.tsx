@@ -1,4 +1,4 @@
-const Post = ({ post, settings, isDarkStripe }: Post) => {
+const Post = ({ post, settings, isDarkStripe }: PostComponent) => {
   const { id, title, body, userId } = post;
 
   // console.log(settings.postPreviewLength);
