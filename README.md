@@ -7,19 +7,19 @@ consult it.
 
 Create a simple CRUD application using React and [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API
 
-- 🔴 Retrieve and display a list of posts
+- 🟢 Retrieve and display a list of posts
 - 🔴 Create new post (showing a simple form in place that submit data)
 displaying the created data when submitted
 - 🔴 Delete a post (with a button for each element in the list)
 - 🔴 Update a post (with a button for each element in the list, showing a form in
 place with data to update) displaying the updated data when submitted
-- 🔴 Show us your design skills, giving a better look to what you’ve done (using
+- 🟠 Show us your design skills, giving a better look to what you’ve done (using
 pure CSS or a framework)
 
 ### Bonus:
-- 🔴 Use a database or local storage to store the data
+- 🟢 Use a database or local storage to store the data
 - 🔴 Display user feedbacks (e.g. toast messages) when needed
-- 🔴 Use Typescript
+- 🟢 Use Typescript
 - 🔴 Deploy
 
 ### Extra
