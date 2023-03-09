@@ -6,18 +6,26 @@ interface BaseModalWrapper {
   settings: {
     triggerPostModal: React.MouseEventHandler<HTMLDivElement>;
     modalVisible: boolean;
-    triggerIsEditablePost: React.MouseEventHandler<HTMLDivElement>;
+    isEditablePost: React.MouseEventHandler<HTMLDivElement>;
     editablePost: boolean;
     reFetchPosts: Function;
+    selectPost: Function;
   };
 }
 
 const BaseModalWrapper: React.FC<BaseModalWrapper> = ({ settings, post }) => {
-  const { triggerPostModal, modalVisible, triggerIsEditablePost, editablePost, reFetchPosts } = settings;
+  const { triggerPostModal, modalVisible, isEditablePost, editablePost, reFetchPosts, selectPost } = settings;
 
   return (
-    <div className={`modal-wrapper fixed inset-0 flex flex-column items-center justify-center bg-primary-900/50 dark:bg-primary-900/70 z-10  ${modalVisible ? 'opacity-100 backdrop-blur-sm' : 'pointer-events-none opacity-0'}`} onClick={triggerPostModal}>
-      {editablePost ? <PostModalFormMode /> : <PostModalDisplayMode />}
+    <div className={`fixed inset-0 modal-wrapper  flex flex-column items-center justify-center ${modalVisible ? 'opacity-100 backdrop-blur-sm' : 'pointer-events-none opacity-0'}`}>
+      <div
+        className={`fixed inset-0 bg-primary-900/50 dark:bg-primary-900/70 z-10  `}
+        onClick={() => {
+          triggerPostModal();
+          isEditablePost(false);
+        }}></div>
+
+      {editablePost ? <PostModalFormMode settings={{ triggerPostModal, modalVisible, isEditablePost, editablePost, selectPost }} post={post} /> : <PostModalDisplayMode settings={{ triggerPostModal, modalVisible, isEditablePost, editablePost, selectPost }} post={post} />}
     </div>
   );
 };

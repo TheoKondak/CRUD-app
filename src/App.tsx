@@ -22,7 +22,7 @@ function App() {
   const [refetchPosts, setRefetchPosts] = useState<boolean>(false);
   const [post, setPost] = useState<Post | null>(null);
   const [editablePost, setEditablePost] = useState<boolean>(false);
-  const [modalVisible, setModalVisible] = useState<boolean>(true);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   useEffect(() => {
     postsService.get('/posts').then((posts) => {
@@ -40,22 +40,25 @@ function App() {
 
   const triggerPostModal: React.MouseEventHandler<HTMLDivElement> = () => setModalVisible((modalVisible) => !modalVisible);
 
-  const triggerIsEditablePost: React.MouseEventHandler<HTMLDivElement> = () => setEditablePost((editablePost) => !editablePost);
+  const isEditablePost: React.MouseEventHandler<HTMLButtonElement> = (isEdditable: boolean = false) => {
+    isEdditable ? setEditablePost(true) : setEditablePost(false);
+    isEdditable ? setModalVisible(true) : setModalVisible(false);
+  };
 
-  const selectPost = (posts, postId) => {
+  const selectPost = (postId: number) => {
     const selectedPost: Post = posts ? posts.filter((post) => post.id === Number(postId)) : null;
     setPost(selectedPost);
   };
-
+  console.log(modalVisible, editablePost, post);
   return (
     <div className="App bg-white dark:bg-primary-800">
       {settings ? <Header logo={settings.view.logo} darkThemeByDefault={settings.view.theme.darkThemeByDefault} /> : <Loading />}
 
-      {settings && posts ? <Posts posts={posts} settings={settings.view.post} /> : <Loading />}
+      <div className="flex items-center justify-center">{settings && posts ? <Posts posts={posts} settings={{ postSettings: settings.view.post, triggerPostModal, isEditablePost }} selectPost={selectPost} /> : <Loading />}</div>
 
       {settings ? <Footer settings={settings.view.footer} /> : <Loading />}
 
-      {settings ? <BaseModalWrapper settings={{ triggerPostModal, modalVisible, triggerIsEditablePost, editablePost, reFetchPosts }} post={post} /> : <Loading />}
+      {settings && post ? <BaseModalWrapper settings={{ triggerPostModal, modalVisible, isEditablePost, editablePost, reFetchPosts, selectPost }} post={post} /> : <Loading />}
     </div>
   );
 }

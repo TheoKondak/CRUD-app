@@ -47,9 +47,11 @@ interface PostComponent {
   post: Post;
   settings: PostSettings;
   isDarkStripe: boolean;
+  selectPost: Function<number>;
 }
 
 interface Post {
+  pop(): unknown;
   id: number;
   title: String;
   body: String;
@@ -57,8 +59,14 @@ interface Post {
 }
 
 interface Posts {
+  filter(arg0: (post: any) => boolean): Post;
   posts: Post[] | null;
-  settings: PostSettings | null;
+  settings: {
+    postSettings: PostSettings | null;
+    triggerPostModal: React.MouseEventHandler<HTMLDivElement>;
+    isEditablePost: React.MouseEventHandler<HTMLDivElement>;
+  };
+  selectPost: Function<number>;
 }
 
 interface PostSettings {
