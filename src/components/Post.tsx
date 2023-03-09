@@ -1,7 +1,7 @@
 const Post = ({ post, settings, isDarkStripe }: Post) => {
   const { id, title, body, userId } = post;
 
-  console.log(settings.postPreviewLength);
+  // console.log(settings.postPreviewLength);
   return (
     <tr className={`${isDarkStripe ? 'bg-primary-transparent text-primary-900 dark:text-white' : 'bg-primary-600 text-white'}  `}>
       <td className="p-2 pl-4">{id}</td>

@@ -7,7 +7,7 @@ const Posts: React.FC<Posts> = ({ posts, settings }) => {
   return (
     <div id="posts" className="flex flex-column items-center justify-center w-full max-w-10xl m-4  md:m-10 ">
       {posts.length > 0 ? (
-        <table className="table-auto  text-sm text-left rounded-lg overflow-hidden">
+        <table className="table-auto  text-sm text-left rounded-lg overflow-hidden backdrop-blur-md shadow-2xl">
           <thead>
             <tr className="bg-primary-600 dark:bg-primary-900 text-white ">
               <th className="p-2 ">Post ID</th>
