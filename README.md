@@ -145,3 +145,14 @@ At the moment there are no fixed issues.
 - https://testing-library.com/docs
 - https://vitest.dev/guide/mocking.html
 - https://stackoverflow.com/questions/74930606/mock-react-router-dom-useparams-hook-in-vitest
+
+
+### Fix input lag for Input and Textarea
+
+- https://delgersaikhann.medium.com/react-input-model-lag-181c22043c29
+- https://properclass.com/blog/nabin-bhusal-1584859028285/why-1622306947452
+
+
+### React Markdown
+
+- https://github.com/remarkjs/react-markdown
