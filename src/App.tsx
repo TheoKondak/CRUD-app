@@ -21,14 +21,20 @@ function App() {
   //  Modal
   const [refetchPosts, setRefetchPosts] = useState<boolean>(false);
   const [post, setPost] = useState<Post | null>(null);
-  const [editablePost, setEditablePost] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [editablePost, setEditablePost] = useState<boolean>(false);
+  // const [formInUpdateMode, setFormInUpdateMode] = useState<boolean>(false);
 
+  // Form
+  // const [editPostTitle, setEditPostTitle]= useState<string>('')
+  // const [editPostBody, setEditPostBody]= useState<string>('')
+
+  // Data Fetching
   useEffect(() => {
     postsService.get('/posts').then((posts) => {
       setPosts(posts);
     });
-  }, []);
+  }, [refetchPosts]);
 
   useEffect(() => {
     postsService.get('/settings').then((settings?: Object) => {
@@ -36,20 +42,24 @@ function App() {
     });
   }, []);
 
-  const reFetchPosts = () => setRefetchPosts(!refetchPosts);
-
+  // Modal Functions
+  // const updateFormMode = (isUpdateMode: boolean = false) => {
+  //   isUpdateMode ? setFormInUpdateMode(true) : setFormInUpdateMode(false);
+  // };
   const triggerPostModal: React.MouseEventHandler<HTMLDivElement> = () => setModalVisible((modalVisible) => !modalVisible);
-
+  const reFetchPosts = () => setRefetchPosts(!refetchPosts);
   const isEditablePost: React.MouseEventHandler<HTMLButtonElement> = (isEdditable: boolean = false) => {
     isEdditable ? setEditablePost(true) : setEditablePost(false);
-    isEdditable ? setModalVisible(true) : setModalVisible(false);
+    // isEdditable ? setModalVisible(true) : setModalVisible(false);
   };
-
   const selectPost = (postId: number) => {
     const selectedPost: Post = posts ? posts.filter((post) => post.id === Number(postId)) : null;
     setPost(selectedPost);
   };
-  console.log(modalVisible, editablePost, post);
+
+  // Form Functions
+  // console.log(formInUpdateMode);
+  // console.log(modalVisible, editablePost, post);
   return (
     <div className="App bg-white dark:bg-primary-800">
       {settings ? <Header logo={settings.view.logo} darkThemeByDefault={settings.view.theme.darkThemeByDefault} /> : <Loading />}
@@ -58,7 +68,7 @@ function App() {
 
       {settings ? <Footer settings={settings.view.footer} /> : <Loading />}
 
-      {settings && post ? <BaseModalWrapper settings={{ triggerPostModal, modalVisible, isEditablePost, editablePost, reFetchPosts, selectPost }} post={post} /> : <Loading />}
+      {settings && post ? <BaseModalWrapper settings={{ triggerPostModal, modalVisible, isEditablePost, setModalVisible, editablePost, reFetchPosts, selectPost, setEditablePost }} post={post} /> : <Loading />}
     </div>
   );
 }

@@ -7,6 +7,7 @@ type PostModalDisplayMode = {
     isEditablePost: Function;
     editablePost: boolean;
     selectPost: Function;
+    // updateFormMode: Function;
   };
   post: Post;
 };

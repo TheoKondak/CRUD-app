@@ -65,6 +65,7 @@ interface Posts {
     postSettings: PostSettings | null;
     triggerPostModal: React.MouseEventHandler<HTMLDivElement>;
     isEditablePost: React.MouseEventHandler<HTMLDivElement>;
+    setFormInUpdateMode: Function;
   };
   selectPost: Function<number>;
 }
