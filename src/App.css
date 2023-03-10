@@ -35,23 +35,26 @@
   }
 
   table {
-    @apply border-2 border-primary-900  mb-4 p-2;
+    @apply border-2 border-primary-900 dark:border-slate-200  mb-4 p-2;
   }
 
   thead {
-    @apply border-b-2 border-primary-800 p-2;
+    @apply border-b-2 border-primary-800 dark:border-slate-200 p-2;
+  }
+
+  thead-tr {
   }
 
   tr th {
-    @apply p-2 border-r-2 last:border-r-0 border-primary-800 bg-primary-500;
+    @apply p-2 border-r-2 last:border-r-0 border-primary-800 dark:border-slate-200 bg-primary-500;
   }
 
   tbody tr {
-    @apply border-b-2 last:border-b-0 border-primary-800;
+    @apply border-b-2 last:border-b-0 border-primary-800 dark:border-slate-200;
   }
 
   tbody tr td {
-    @apply p-2 border-r-2 last:border-r-0 border-primary-800;
+    @apply p-2 border-r-2 last:border-r-0 border-primary-800 dark:border-slate-200;
   }
 }
 
