@@ -99,9 +99,9 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchPosts }: Props) =>
         <button title="Save Post" className={`${formButtonStyles.basicButtonStyles} ${formButtonStyles.success}`} onClick={onSubmitAndClose}>
           <VscSaveAll className="inline-block w-4 h-4" /> Save & Close
         </button>
-        <button title="Save Post" className={`${formButtonStyles.basicButtonStyles} ${formButtonStyles.success}`} onClick={onSubmit}>
+        {/* <button title="Save Post" className={`${formButtonStyles.basicButtonStyles} ${formButtonStyles.success}`} onClick={onSubmit}>
           <VscSaveAll className="inline-block w-4 h-4" /> Save
-        </button>
+        </button> */}
         <button title="Reset" className={`${formButtonStyles.basicButtonStyles} ${formButtonStyles.danger}`} onClick={onResetChanges}>
           <VscDebugRestart className="inline-block w-4 h-4" /> Reset
         </button>

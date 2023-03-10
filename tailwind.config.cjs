@@ -14,6 +14,7 @@ module.exports = {
         black: '#000000',
         danger: colors.red,
         success: colors.green,
+        slate: colors.slate,
       },
       fontSize: {
         xs: '14px',

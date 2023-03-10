@@ -4,9 +4,9 @@ import Post from './Post';
 
 const Posts: React.FC<Posts> = ({ posts, settings, selectPost }) => {
   return (
-    <div id="posts" className="flex flex-column items-center justify-center w-full lg:max-w-screen-md xl:max-w-7xl m-4 mx-auto md:m-10 ">
+    <div id="posts" className="flex flex-column items-center justify-center  lg:max-w-screen-md xl:max-w-7xl m-4 mt-0 md:mt-0 mx-auto md:m-10 w-full ">
       {posts.length > 0 ? (
-        <table className="table-auto text-sm text-left rounded-lg overflow-hidden backdrop-blur-md shadow-2xl">
+        <table className="table-auto text-sm text-left rounded-lg backdrop-blur-md shadow-2xl">
           <thead>
             <tr className="bg-primary-600 dark:bg-primary-900 text-white ">
               <th className="p-2 ">Post ID</th>

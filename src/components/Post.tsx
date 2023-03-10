@@ -4,11 +4,13 @@ const Post = ({ post, settings, isDarkStripe, selectPost }: PostComponent) => {
   const { id, title, body, userId } = post;
 
   const { postSettings, triggerPostModal, isEditablePost } = settings;
+
+  console.log(body.length > postSettings.postPreviewLength, `${body.substring(0, postSettings.postPreviewLength)}...`);
   return (
-    <tr className={`${isDarkStripe ? 'bg-primary-transparent text-primary-900 dark:text-white' : 'bg-primary-600 text-white'}  `}>
+    <tr className={` ${isDarkStripe ? 'bg-primary-transparent text-primary-900 dark:text-white' : 'bg-primary-600 text-white'}  `}>
       <td className="p-2 pl-4">{id}</td>
       <td className="p-2">{title}</td>
-      <td className="p-2">{body.length > settings.postPreviewLength ? `${body.substring(0, settings.postPreviewLength)}...` : body}</td>
+      <td className="p-2">{body.length > postSettings.postPreviewLength ? `${body.substring(0, postSettings.postPreviewLength)}...` : body}</td>
       <td className="p-2 pl-4">
         <div className="flex justify-center items-center">{userId}</div>
       </td>

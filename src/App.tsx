@@ -12,6 +12,7 @@ import BaseModalWrapper from './components/modal/BaseModalWrapper';
 
 // CSS
 import './App.css';
+import Search from './components/Search';
 
 function App() {
   const [settings, setSettings] = useState<Settings | null>(null);
@@ -24,6 +25,9 @@ function App() {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [editablePost, setEditablePost] = useState<boolean>(false);
   // const [formInUpdateMode, setFormInUpdateMode] = useState<boolean>(false);
+
+  // Search
+  const [search, setSearch] = useState('');
 
   // Form
   // const [editPostTitle, setEditPostTitle]= useState<string>('')
@@ -57,18 +61,20 @@ function App() {
     setPost(selectedPost);
   };
 
-  // Form Functions
-  // console.log(formInUpdateMode);
-  // console.log(modalVisible, editablePost, post);
-  return (
-    <div className="App bg-white dark:bg-primary-800">
-      {settings ? <Header logo={settings.view.logo} darkThemeByDefault={settings.view.theme.darkThemeByDefault} /> : <Loading />}
+  // Search Functions
+  const handleSearchFieldUpdate = (event) => setSearch(event.target.value.toLowerCase());
 
-      <div className="flex items-center justify-center">{settings && posts ? <Posts posts={posts} settings={{ postSettings: settings.view.post, triggerPostModal, isEditablePost }} selectPost={selectPost} /> : <Loading />}</div>
+  return (
+    <div className="bg-primary-100 dark:bg-primary-800 flex flex-col items-center justify-start w-full h-full ">
+      {settings ? <Header logo={settings.view.logo} darkThemeByDefault={settings.view.theme.darkThemeByDefault} /> : <Loading />}
+      <div className="bg-primary-500 dark:bg-primary-700 flex flex-column items-center justify-center w-5/6 mt-4 -mb-10  md:-mb-10  mx-auto md:m-10 pb-14 pt-20 rounded-md shadow-2xl">
+        <Search placeholder="Search for a post" onChange={handleSearchFieldUpdate} setPosts={setPosts} />
+      </div>
+      <div className="flex items-center justify-center h-4/6 max-w-5/6">{settings && posts ? <Posts posts={posts.filter((post) => (search.length === 0 ? post : post.title.toLowerCase().includes(search)))} settings={{ postSettings: settings.view.post, triggerPostModal, isEditablePost }} selectPost={selectPost} /> : <Loading />}</div>
 
       {settings ? <Footer settings={settings.view.footer} /> : <Loading />}
 
-      {settings && post ? <BaseModalWrapper settings={{ triggerPostModal, modalVisible, isEditablePost, setModalVisible, editablePost, reFetchPosts, selectPost, setEditablePost }} post={post} /> : <Loading />}
+      {settings && posts ? <BaseModalWrapper settings={{ triggerPostModal, modalVisible, isEditablePost, setModalVisible, editablePost, reFetchPosts, selectPost, setEditablePost }} post={post} /> : <Loading />}
     </div>
   );
 }
