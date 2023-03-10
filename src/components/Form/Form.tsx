@@ -89,7 +89,8 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchPosts }: Props) =>
   const onBlurInputTitleUpdate = (event) => setPostTitle(event.target.value);
 
   const onBlurTextareaBodyUpdate = (event) => setPostBody(event.target.value);
-
+  console.log('Post Body');
+  console.log(postBody);
   return (
     <form id={`post-${post.id}`} className={`relative h-full w-full text-white  px-4 py-4 mx-auto z-20`}>
       <div id={`post-${post.id}-header`} className=" flex items-center justify-between">
@@ -100,7 +101,7 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchPosts }: Props) =>
       </button>
       <hr />
       <div id={`post-${post.id}-body`} className="text-md pt-2 h-4/6">
-        <TextArea onBlur={onBlurTextareaBodyUpdate} placeholder={post.body} value={postBody} />
+        <TextArea onBlur={onBlurTextareaBodyUpdate} placeholder={postBody} value={postBody} />
       </div>
       <div className=" w-full flex items-center justify-end flex-wrap md:flex-nowrap gap-2 my-2">
         <button title="Save Post" className={`btn btn-success`} onClick={onSubmitAndClose}>
@@ -109,7 +110,12 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchPosts }: Props) =>
         {/* <button title="Save Post" className={`${formButtonStyles.basicButtonStyles} ${formButtonStyles.success}`} onClick={onSubmit}>
           <VscSaveAll className="inline-block w-4 h-4" /> Save
         </button> */}
-        <button title="Reset" className={`btn btn-danger`} onClick={onResetChanges}>
+        <button
+          title="Reset"
+          className={`btn btn-danger`}
+          onClick={(event) => {
+            onResetChanges(event);
+          }}>
           <VscDebugRestart className="inline-block w-4 h-4" /> Reset
         </button>
         <button title="Delete Post" className={`btn btn-default`} onClick={onCancel}>
