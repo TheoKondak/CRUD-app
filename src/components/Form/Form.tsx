@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { VscSaveAll, VscError, VscCloseAll, VscDebugRestart } from 'react-icons/vsc';
 
@@ -17,11 +17,24 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchPosts }: Props) =>
   const [unchangedPost, setUnchangedPost] = useState<Post>(post);
   const [postTitle, setPostTitle] = useState(post.title);
   const [postBody, setPostBody] = useState(post.body);
+  const [serverPosts, setServerPosts] = useState<Posts | []>([]);
+
+  useEffect(() => {
+    postsService.get('/posts').then((posts) => setServerPosts(posts));
+  }, []);
 
   const onSubmit: Function = async (event) => {
     event.preventDefault();
-    const updatedPost = { ...post, title: postTitle, body: postBody };
-    postsService.upd(`posts/${post.id}`, updatedPost);
+
+    const existsOnServer = serverPosts.filter((serverPost) => serverPost.id === post.id).length === 0 ? false : true;
+
+    if (existsOnServer) {
+      const updatedPost = { ...post, title: postTitle, body: postBody };
+      postsService.upd(`posts/${post.id}`, updatedPost);
+    } else {
+      postsService.create(post);
+    }
+
     console.log('PostSaved');
     await reFetchPosts();
   };
@@ -29,7 +42,6 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchPosts }: Props) =>
   const onSubmitAndClose = (event) => {
     event.preventDefault();
     onSubmit(event).then(() => {
-      console.log('Refetching');
       reFetchPosts();
     });
 

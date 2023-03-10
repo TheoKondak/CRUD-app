@@ -59,12 +59,10 @@ function App() {
   const selectPost = (postId: number) => {
     const selectedPost: Post = posts
       ? posts.filter((post) => {
-          console.log(post.id, postId);
-
           return post.id === Number(postId);
         })
       : null;
-    console.log(selectedPost);
+
     setPost(selectedPost);
   };
 
@@ -76,33 +74,16 @@ function App() {
     const newPostId: number | void = posts ? Math.max(...posts.map((post) => post.id)) + 1 : console.error('Some Error Occured. Failed to create new post, because post fetching failed');
     const newUserId: number | void = posts ? Math.max(...posts.map((post) => post.userId)) + 1 : console.error('Some Error Occured. Failed to create new post, because post fetching failed');
     const newPost = { userId: newUserId, id: newPostId, title: '', body: '' };
+    setPosts(posts.concat(newPost));
+    setPost([newPost]);
 
-    postsService.create(newPost).then((returnedPost) => {
-      setPosts(posts.concat(returnedPost));
-      setPost([returnedPost]);
+    triggerPostModal(true);
+    isEditablePost(true);
+    // postsService.create(newPost).then((returnedPost) => {
 
-      triggerPostModal(true);
-      isEditablePost(true);
-    });
-
-    // if (newNameEntry.length > 0 && newPhoneEntry > 0) {
-    //   // Sync Data to the server
-    //   phonebookService
-    //     .create(newPhoneBookObject, {
-    //       message: `${newPhoneBookObject.name} added to the phonebook list`,
-    //       setNotificationMessage: setNotificationMessage,
-    //       duration: 5000,
-    //     })
-    //     .then((returnedPhoneBook) => {
-    //       setPersonsData(personsData.concat(newPhoneBookObject));
-    //     });
-    // } else {
-    //   alert(`You need to fill both name and phone number fields`);
-    // }
-
-    // console.log(Math.max(...postIds));
+    // });
   };
-  console.log(post);
+
   return (
     <div className="bg-primary-100 dark:bg-primary-800 flex flex-col items-center justify-start w-full h-full ">
       {settings ? <Header logo={settings.view.logo} darkThemeByDefault={settings.view.theme.darkThemeByDefault} /> : <Loading />}
@@ -113,7 +94,6 @@ function App() {
           className="btn btn-default block"
           title="Add a new post"
           onClick={() => {
-            console.log('WIP: Add Post');
             addPost();
           }}>
           Add Post
