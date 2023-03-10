@@ -116,7 +116,7 @@ The colors of the theme, are inspired by the color palette used in [Tapioview.co
 
 ### Known Issues
 
-At the moment there are no outstanding issues.
+- Body Textarea is a bit laggy. Here is a resource [talking about it](https://dev.to/kevinkh89/how-to-solve-input-delay-lagging-in-react-j2o)
 
 ### Fixed Issues
 
