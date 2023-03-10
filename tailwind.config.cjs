@@ -12,6 +12,8 @@ module.exports = {
         tertiary: colors.violet,
         white: '#ffffff',
         black: '#000000',
+        danger: colors.red,
+        success: colors.green,
       },
       fontSize: {
         xs: '14px',
