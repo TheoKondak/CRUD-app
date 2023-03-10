@@ -19,13 +19,13 @@ const PostModalDisplayMode: React.FC<PostModalDisplayMode> = ({ settings, post }
     const selectedPost: Post | unknown = post.pop();
 
     return (
-      <div id={`post-${selectedPost.id}`} className={`relative h-4/6  bg-secondary-600 dark:bg-primary-700 text-white shadow-lg rounded-sm max-w-screen-sm  px-4 py-4 mx-auto ${modalVisible ? 'opacity-100' : 'pointer-events-none opacity-0'} z-20`}>
+      <div id={`post-${selectedPost.id}`} className={`relative h-4/6  bg-slate-100 dark:bg-primary-700 shadow-lg rounded-sm max-w-screen-sm  px-4 py-4 mx-auto ${modalVisible ? 'opacity-100' : 'pointer-events-none opacity-0'} z-20`}>
         <div id={`post-${selectedPost.id}-header`} className=" flex items-center justify-between">
-          <h2 className="text-xl pb-2 w-4/6 overflow-hidden">{selectedPost.title}</h2>
+          <h2 className="text-xl text-slate-900 pb-2 w-4/6 overflow-hidden">{selectedPost.title}</h2>
           <div className=" w-2/6 flex items-center justify-end">
             <button
               title="Edit Post"
-              className=" px-2 hover:cursor-pointer  flex items-center justify-center"
+              className=" px-2 hover:cursor-pointer  flex items-center justify-center hover:text-secondary-500"
               onClick={() => {
                 selectPost(selectedPost.id);
                 isEditablePost(true);
@@ -34,7 +34,7 @@ const PostModalDisplayMode: React.FC<PostModalDisplayMode> = ({ settings, post }
             </button>
             <button
               title="Delete Post"
-              className="px-2  hover:cursor-pointer flex items-center justify-center"
+              className="px-2  hover:cursor-pointer flex items-center justify-center hover:text-red-600"
               onClick={() => {
                 triggerPostModal();
               }}>
@@ -50,7 +50,7 @@ const PostModalDisplayMode: React.FC<PostModalDisplayMode> = ({ settings, post }
           <VscCloseAll />
         </button>
         <hr />
-        <div id={`post-${selectedPost.id}-body`} className="text-md pt-2">
+        <div id={`post-${selectedPost.id}-body`} className="text-sm text-slate-900  p-1 py-2 pl-2  overflow-y-auto h-5/6">
           {selectedPost.body}
         </div>
       </div>
