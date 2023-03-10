@@ -1,4 +1,6 @@
 import { VscCloseAll, VscEdit, VscError } from 'react-icons/vsc';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 type PostModalDisplayMode = {
   settings: {
@@ -51,7 +53,7 @@ const PostModalDisplayMode: React.FC<PostModalDisplayMode> = ({ settings, post }
         </button>
         <hr />
         <div id={`post-${selectedPost.id}-body`} className="text-sm text-slate-900  p-1 py-2 pl-2  overflow-y-auto h-5/6">
-          {selectedPost.body}
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{selectedPost.body}</ReactMarkdown>
         </div>
       </div>
     );

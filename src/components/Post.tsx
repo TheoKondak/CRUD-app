@@ -1,5 +1,8 @@
 import { VscPreview, VscEdit, VscError } from 'react-icons/vsc';
 
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+
 const Post = ({ post, settings, isDarkStripe, selectPost }: PostComponent) => {
   const { id, title, body, userId } = post;
 
@@ -9,7 +12,9 @@ const Post = ({ post, settings, isDarkStripe, selectPost }: PostComponent) => {
     <tr className={` ${isDarkStripe ? 'bg-primary-transparent text-primary-900 dark:text-white' : 'bg-primary-600 text-white'}  `}>
       <td className="p-2 pl-4">{id}</td>
       <td className="p-2">{title}</td>
-      <td className="p-2">{body.length > postSettings.postPreviewLength ? `${body.substring(0, postSettings.postPreviewLength)}...` : body}</td>
+      <td className="p-2">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{body.length > Number(postSettings.postPreviewLength) ? `${body.substring(0, Number(postSettings.postPreviewLength))}...` : body}</ReactMarkdown>
+      </td>
       <td className="p-2 pl-4">
         <div className="flex justify-center items-center">{userId}</div>
       </td>
