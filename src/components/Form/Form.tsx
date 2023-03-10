@@ -23,30 +23,47 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchPosts }: Props) =>
     postsService.get('/posts').then((posts) => setServerPosts(posts));
   }, []);
 
-  const onSubmit: Function = async (event) => {
+  const onSubmit: Function = (event) => {
     event.preventDefault();
 
     const existsOnServer = serverPosts.filter((serverPost) => serverPost.id === post.id).length === 0 ? false : true;
 
     if (existsOnServer) {
-      const updatedPost = { ...post, title: postTitle, body: postBody };
-      postsService.upd(`posts/${post.id}`, updatedPost);
+      if (postTitle.length === 0) {
+        if (window.confirm(`Cannot Save a post with an empty title. \n Press ok to exit without saving, or cancel to continue editing`)) {
+          isEditablePost(false);
+          setModalVisible(false);
+        }
+      } else {
+        const updatedPost = { ...post, title: postTitle, body: postBody };
+        postsService.upd(`posts/${post.id}`, updatedPost);
+        isEditablePost(false);
+        setModalVisible(false);
+        reFetchPosts();
+      }
     } else {
-      postsService.create(post);
-    }
+      if (postTitle.length === 0) {
+        if (window.confirm(`Cannot Save a post with an empty title. \n Press ok to exit without saving, or cancel to continue editing`)) {
+          isEditablePost(false);
+          setModalVisible(false);
+        }
+      } else {
+        const updatedPost = { ...post, title: postTitle, body: postBody };
 
-    console.log('PostSaved');
-    await reFetchPosts();
+        postsService.create(updatedPost);
+        isEditablePost(false);
+        setModalVisible(false);
+        reFetchPosts();
+      }
+    }
   };
 
   const onSubmitAndClose = (event) => {
     event.preventDefault();
-    onSubmit(event).then(() => {
-      reFetchPosts();
-    });
+    onSubmit(event);
 
-    isEditablePost(false);
-    setModalVisible(false);
+    // isEditablePost(false);
+    // setModalVisible(false);
   };
 
   const onCancel: Function = (event) => {
@@ -76,14 +93,14 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchPosts }: Props) =>
   return (
     <form id={`post-${post.id}`} className={`relative h-full w-full text-white  px-4 py-4 mx-auto z-20`}>
       <div id={`post-${post.id}-header`} className=" flex items-center justify-between">
-        <Input onChange={handleInputTitleUpdate} placeholder={postTitle} value={postTitle} />
+        <Input onChange={handleInputTitleUpdate} placeholder={post.title} value={postTitle} />
       </div>
       <button name="Close Post" className="absolute -top-5 -right-5 w-7 h-7 flex items-center justify-center hover:cursor-pointer bg-secondary-600 dark:bg-primary-700 text-white  shadow-lg rounded-full" onClick={onCancel}>
         <VscCloseAll />
       </button>
       <hr />
       <div id={`post-${post.id}-body`} className="text-md pt-2 h-4/6">
-        <TextArea onChange={handleTextareaBodyUpdate} placeholder={postBody} value={postBody} />
+        <TextArea onChange={handleTextareaBodyUpdate} placeholder={post.body} value={postBody} />
       </div>
       <div className=" w-full flex items-center justify-end flex-wrap md:flex-nowrap gap-2 my-2">
         <button title="Save Post" className={`btn btn-success`} onClick={onSubmitAndClose}>

@@ -51,7 +51,9 @@ function App() {
   //   isUpdateMode ? setFormInUpdateMode(true) : setFormInUpdateMode(false);
   // };
   const triggerPostModal: React.MouseEventHandler<HTMLDivElement> = () => setModalVisible((modalVisible) => !modalVisible);
-  const reFetchPosts = () => setRefetchPosts(!refetchPosts);
+  const reFetchPosts = () => {
+    setRefetchPosts(!refetchPosts);
+  };
   const isEditablePost: React.MouseEventHandler<HTMLButtonElement> = (isEdditable: boolean = false) => {
     isEdditable ? setEditablePost(true) : setEditablePost(false);
     // isEdditable ? setModalVisible(true) : setModalVisible(false);
