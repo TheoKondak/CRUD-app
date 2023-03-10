@@ -44,20 +44,6 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchPosts }: Props) =>
       if (window.confirm(`Are you sure you want to exit? Changes will be lost.`)) {
         isEditablePost(false);
         setModalVisible(false);
-        // Source https://stackoverflow.com/questions/8217419/how-to-determine-if-javascript-array-contains-an-object-with-an-attribute-that-e
-        // const duplicateEntryId = personsData.findIndex((person) => person.name === newNameEntry) + 1; // Array id start from 0 , while the personsData ids start from 1
-        // const person = personsData.find((n) => n.id === duplicateEntryId);
-        // const changedPerson = { ...person, number: newPhoneEntry };
-        // const newPersonsData = [...personsData];
-        // newPersonsData[duplicateEntryId - 1] = changedPerson;
-        // // Update Entry
-        // phonebookService.update(duplicateEntryId, changedPerson, {
-        //   message: `'${changedPerson.name}' has been updated`,
-        //   duration: 5000, // in ms
-        //   setNotificationMessage: setNotificationMessage,
-        // });
-        // setPersonsData(newPersonsData);
-        // If user cancels the new entry
       }
     } else {
       isEditablePost(false);

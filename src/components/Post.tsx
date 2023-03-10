@@ -5,7 +5,6 @@ const Post = ({ post, settings, isDarkStripe, selectPost }: PostComponent) => {
 
   const { postSettings, triggerPostModal, isEditablePost } = settings;
 
-  console.log(body.length > postSettings.postPreviewLength, `${body.substring(0, postSettings.postPreviewLength)}...`);
   return (
     <tr className={` ${isDarkStripe ? 'bg-primary-transparent text-primary-900 dark:text-white' : 'bg-primary-600 text-white'}  `}>
       <td className="p-2 pl-4">{id}</td>

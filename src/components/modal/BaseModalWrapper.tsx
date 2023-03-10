@@ -18,7 +18,7 @@ interface BaseModalWrapper {
 
 const BaseModalWrapper: React.FC<BaseModalWrapper> = ({ settings, post }) => {
   const { triggerPostModal, modalVisible, isEditablePost, editablePost, reFetchPosts, selectPost, setModalVisible } = settings;
-
+  // console.log(post);
   return (
     <div className={`fixed inset-0 modal-wrapper  flex flex-column items-center justify-center ${modalVisible ? 'opacity-100 backdrop-blur-sm' : 'pointer-events-none opacity-0'}`}>
       <div
