@@ -75,14 +75,6 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchPosts }: Props) =>
 
   const handleTextareaBodyUpdate = (event) => setPostBody(event.target.value);
 
-  // Ideally this should be extended to work in a separate Button component, that would work across the whole application.
-  const formButtonStyles = {
-    basicButtonStyles: `hover:cursor-pointer  flex items-center justify-center rounded-lg px-5 py-1 shadow-inner-2xl text-white text-sm`,
-    default: `border-2 border-secondary-900; hover:border-tertiary-700 bg-secondary-700 hover:bg-secondary-600`,
-    success: `border-2 border-secondary-900; hover:border-success-700 bg-secondary-700 hover:bg-secondary-600`,
-    danger: `border-2 border-secondary-900; hover:border-danger-700 bg-secondary-700 hover:bg-secondary-600`,
-  };
-
   return (
     <form id={`post-${post.id}`} className={`relative h-full w-full text-white  px-4 py-4 mx-auto z-20`}>
       <div id={`post-${post.id}-header`} className=" flex items-center justify-between">
@@ -96,16 +88,16 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchPosts }: Props) =>
         <TextArea onChange={handleTextareaBodyUpdate} placeholder={postBody} value={postBody} />
       </div>
       <div className=" w-full flex items-center justify-end flex-wrap md:flex-nowrap gap-2 my-2">
-        <button title="Save Post" className={`${formButtonStyles.basicButtonStyles} ${formButtonStyles.success}`} onClick={onSubmitAndClose}>
+        <button title="Save Post" className={`btn btn-success`} onClick={onSubmitAndClose}>
           <VscSaveAll className="inline-block w-4 h-4" /> Save & Close
         </button>
         {/* <button title="Save Post" className={`${formButtonStyles.basicButtonStyles} ${formButtonStyles.success}`} onClick={onSubmit}>
           <VscSaveAll className="inline-block w-4 h-4" /> Save
         </button> */}
-        <button title="Reset" className={`${formButtonStyles.basicButtonStyles} ${formButtonStyles.danger}`} onClick={onResetChanges}>
+        <button title="Reset" className={`btn btn-danger`} onClick={onResetChanges}>
           <VscDebugRestart className="inline-block w-4 h-4" /> Reset
         </button>
-        <button title="Delete Post" className={`${formButtonStyles.basicButtonStyles} ${formButtonStyles.default}`} onClick={onCancel}>
+        <button title="Delete Post" className={`btn btn-default`} onClick={onCancel}>
           <VscError className="inline-block" /> Cancel
         </button>
       </div>
