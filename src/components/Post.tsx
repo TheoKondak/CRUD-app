@@ -18,10 +18,10 @@ const Post = ({ post, settings, isDarkStripe, selectPost }: PostComponent) => {
       <td className="p-2 pl-4">
         <div className="flex justify-center items-center">{userId}</div>
       </td>
-      <td className="p-1">
+      <td className="p-0 relative">
         <button
           title="View Post"
-          className="flex justify-center items-center"
+          className={`flex justify-center items-center w-full h-full  absolute inset-0 hover:shadow-2xl`}
           onClick={() => {
             selectPost(id);
             triggerPostModal();
@@ -29,10 +29,10 @@ const Post = ({ post, settings, isDarkStripe, selectPost }: PostComponent) => {
           <VscPreview className="w-5 h-5 hover:cursor-pointer" />
         </button>
       </td>
-      <td className="p-1">
+      <td className="p-0 relative">
         <button
           title="Edit Post"
-          className="flex justify-center items-center"
+          className={`flex justify-center items-center w-full h-full  absolute inset-0 hover:shadow-2xl`}
           onClick={() => {
             selectPost(id);
             triggerPostModal();
@@ -41,10 +41,10 @@ const Post = ({ post, settings, isDarkStripe, selectPost }: PostComponent) => {
           <VscEdit className="w-5 h-5 hover:cursor-pointer" />
         </button>
       </td>
-      <td className="p-1">
+      <td className="p-0 relative">
         <button
           title="Delete Post"
-          className="flex justify-center items-center"
+          className={`flex justify-center items-center w-full h-full  absolute inset-0 hover:shadow-2xl`}
           onClick={() => {
             selectPost(id);
           }}>

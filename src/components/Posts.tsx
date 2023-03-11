@@ -25,7 +25,7 @@ const Posts: React.FC<Posts> = ({ posts, settings, selectPost }) => {
           </tbody>
         </table>
       ) : (
-        <div>No Posts yet</div>
+        <div className="text-sm text-left rounded-lg backdrop-blur-md shadow-2xl">No Posts yet</div>
       )}
     </div>
   );

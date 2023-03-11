@@ -27,7 +27,7 @@
     @apply list-disc mb-4;
   }
   li {
-    @apply mb-1;
+    @apply mb-1 ml-7;
   }
 
   blockquote {

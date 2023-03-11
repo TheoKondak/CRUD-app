@@ -8,7 +8,7 @@ consult it.
 Create a simple CRUD application using React and [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API
 
 - 🟢 Retrieve and display a list of posts
-- 🔴 Create new post (showing a simple form in place that submit data)
+- 🟢 Create new post (showing a simple form in place that submit data)
 displaying the created data when submitted
 - 🔴 Delete a post (with a button for each element in the list)
 - 🔴 Update a post (with a button for each element in the list, showing a form in
@@ -21,6 +21,8 @@ pure CSS or a framework)
 - 🔴 Display user feedbacks (e.g. toast messages) when needed
 - 🟢 Use Typescript
 - 🔴 Deploy
+- 🟢 Count the number of words and letters
+- 🟢 Support Markdown
 
 ### Extra
 
@@ -60,7 +62,8 @@ TODO
 flowchart TD
     
     App --> createPost --> modalFormMode
-    App --> httpGet --> Posts
+    App --> httpGetLocalPosts --> Posts
+    App --> fetchRemotePosts --> httpGetRemotePosts --> Posts
     
     Posts --> openPost --> modalDisplayMode --> Post
     
@@ -118,9 +121,10 @@ The colors of the theme, are inspired by the color palette used in [Tapioview.co
 
 - Body Textarea is a bit laggy. Here is a resource [talking about it](https://dev.to/kevinkh89/how-to-solve-input-delay-lagging-in-react-j2o)
 
+
 ### Fixed Issues
 
-At the moment there are no fixed issues.
+- As of now Reset/Save post etc are not working properly. Issue happened at [415920f52eff64a755ce24f88b42d7dba4b4302b](https://github.com/TheoKondak/CRUD-app/tree/415920f52eff64a755ce24f88b42d7dba4b4302b)
 
 ## Resources
 

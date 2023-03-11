@@ -21,7 +21,7 @@ const PostModalDisplayMode: React.FC<PostModalDisplayMode> = ({ settings, post }
     const selectedPost: Post | unknown = post.pop();
 
     return (
-      <div id={`post-${selectedPost.id}`} className={`relative h-4/6  bg-slate-100 dark:bg-primary-700 shadow-lg rounded-sm max-w-screen-sm  px-4 py-4 mx-auto ${modalVisible ? 'opacity-100' : 'pointer-events-none opacity-0'} z-20`}>
+      <div id={`post-${selectedPost.id}`} className={`relative h-4/6 w-4/6  bg-slate-100 dark:bg-primary-700 shadow-lg rounded-sm px-4 py-4 mx-auto ${modalVisible ? 'opacity-100' : 'pointer-events-none opacity-0'} z-20`}>
         <div id={`post-${selectedPost.id}-header`} className=" flex items-center justify-between">
           <h2 className="text-xl text-slate-900 pb-2 w-4/6 overflow-hidden">{selectedPost.title}</h2>
           <div className=" w-2/6 flex items-center justify-end">
