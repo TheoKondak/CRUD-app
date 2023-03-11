@@ -86,22 +86,22 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchPosts }: Props) =>
     setPostBody(unchangedPost.body);
   };
 
-  const onBlurInputTitleUpdate = (event) => setPostTitle(event.target.value);
+  const onChangeInputTitleUpdate = (event) => setPostTitle(event.target.value);
 
-  const onBlurTextareaBodyUpdate = (event) => setPostBody(event.target.value);
-  console.log('Post Body');
-  console.log(postBody);
+  const onChangeTextareaBodyUpdate = (event) => setPostBody(event.target.value);
+  // console.log('Post Body');
+  // console.log(postBody);
   return (
     <form id={`post-${post.id}`} className={`relative h-full w-full text-white  px-4 py-4 mx-auto z-20`}>
       <div id={`post-${post.id}-header`} className=" flex items-center justify-between">
-        <Input onBlur={onBlurInputTitleUpdate} placeholder={post.title} value={postTitle} />
+        <Input onChange={onChangeInputTitleUpdate} value={postTitle} />
       </div>
       <button name="Close Post" className="absolute -top-5 -right-5 w-7 h-7 flex items-center justify-center hover:cursor-pointer bg-secondary-600 dark:bg-primary-700 text-white  shadow-lg rounded-full" onClick={onCancel}>
         <VscCloseAll />
       </button>
       <hr />
       <div id={`post-${post.id}-body`} className="text-md pt-2 h-4/6">
-        <TextArea onBlur={onBlurTextareaBodyUpdate} placeholder={postBody} value={postBody} />
+        <TextArea onChange={onChangeTextareaBodyUpdate} value={postBody} />
       </div>
       <div className=" w-full flex items-center justify-end flex-wrap md:flex-nowrap gap-2 my-2">
         <button title="Save Post" className={`btn btn-success`} onClick={onSubmitAndClose}>
