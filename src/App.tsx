@@ -58,6 +58,7 @@ function App() {
 
   const triggerPostModal: Function = () => setModalVisible((modalVisible) => !modalVisible);
   const reFetchPosts = () => {
+    console.log('refetching');
     setRefetchPosts(!refetchPosts);
   };
   const isEditablePost: Function = (isEditable: boolean = false) => {
@@ -92,29 +93,18 @@ function App() {
 
   // Add Random External Post
   const addRandomExternalPost: Function = (posts: Post[], externalPosts: Post[]) => {
-    // const isPostInLocalPosts = (post) => posts.some((p) => p.title === post.title || p.body === post.body);
-    // const postsInFirstArray = posts && externalPosts && externalPosts.filter(isPostInLocalPosts);
-    // await console.log(postsInFirstArray);
-
     for (let i = 0; i < externalPosts.length; i++) {
-      const post = externalPosts[i];
-
+      // Fetch a post that has either unique title or unique body
       const firstUniquePost = externalPosts.find((externalPost) => {
         return !posts.some((localPost) => localPost.title === externalPost.title || localPost.body === externalPost.body) && externalPosts.indexOf(externalPost) === externalPosts.findIndex((post) => post.title === externalPost.title && post.body === externalPost.body);
       });
-      console.log(firstUniquePost);
 
       // Creating a new ID because the incoming posts, might have duplicate IDs. So instead I create a new ID
       const newPostId: number | void = posts ? Math.max(...posts.map((post) => post.id)) + 1 : console.error('Some Error Occured. Failed to create new post, because post fetching failed');
       const newPost = { userId: firstUniquePost.userId, id: newPostId, title: firstUniquePost.title, body: firstUniquePost.body };
       setPosts(posts.concat(newPost));
       postsService.create(newPost);
-
-      if (!posts.includes(post)) {
-        // console.log(`The first unique post is: ${post}`);
-        // console.log(post);
-
-        // refetchPosts;
+      if (!posts.includes(newPost)) {
         break;
       }
     }
