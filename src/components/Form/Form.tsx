@@ -15,7 +15,7 @@ type Props = {
 };
 
 const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal }: Props) => {
-  const [unchangedPost, setUnchangedPost] = useState<Post>(post);
+  const unchangedPost = post;
   const [postTitle, setPostTitle] = useState(post.title);
   const [postBody, setPostBody] = useState(post.body);
   const [serverPosts, setServerPosts] = useState<Posts | []>([]);
