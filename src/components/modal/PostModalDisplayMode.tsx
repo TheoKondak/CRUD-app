@@ -1,6 +1,7 @@
 import { VscCloseAll, VscEdit, VscError } from 'react-icons/vsc';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import DeletePostButton from '../DeletePostButton';
 
 type PostModalDisplayMode = {
   settings: {
@@ -9,13 +10,13 @@ type PostModalDisplayMode = {
     isEditablePost: Function;
     editablePost: boolean;
     selectPost: Function;
-    // updateFormMode: Function;
+    reFetchLocal: Function;
   };
   post: Post;
 };
 
 const PostModalDisplayMode: React.FC<PostModalDisplayMode> = ({ settings, post }) => {
-  const { triggerPostModal, modalVisible, isEditablePost, editablePost, selectPost } = settings;
+  const { triggerPostModal, modalVisible, isEditablePost, editablePost, selectPost, reFetchLocal } = settings;
 
   if (post && post.length == 1) {
     const selectedPost: Post | unknown = post.pop();
@@ -34,14 +35,8 @@ const PostModalDisplayMode: React.FC<PostModalDisplayMode> = ({ settings, post }
               }}>
               <VscEdit className="inline-block w-4 h-4" />
             </button>
-            <button
-              title="Delete Post"
-              className="px-2  hover:cursor-pointer flex items-center justify-center hover:text-red-600"
-              onClick={() => {
-                triggerPostModal();
-              }}>
-              <VscError className="inline-block" />
-            </button>
+
+            <DeletePostButton id={selectedPost.id} reFetchLocal={reFetchLocal} selectPost={selectPost} customOnClick={triggerPostModal} className={`px-2  hover:cursor-pointer flex items-center justify-center hover:text-red-600`} />
           </div>
         </div>
         <button

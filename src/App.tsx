@@ -42,7 +42,6 @@ function App() {
   useEffect(() => {
     postsService.get('/posts').then((posts) => {
       setPosts(posts);
-      console.log('refetching', posts);
     });
   }, [refetchPosts]);
 
@@ -54,14 +53,15 @@ function App() {
 
   useEffect(() => {
     postsService.getExternal('https://jsonplaceholder.typicode.com/posts').then((posts?: Post[]) => {
-      // console.log(posts);
       setExternalPosts(posts);
     });
   }, []);
 
   // Modal Functions
 
-  const triggerPostModal: Function = () => setModalVisible((modalVisible) => !modalVisible);
+  const triggerPostModal: Function = () => {
+    setModalVisible((modalVisible) => !modalVisible);
+  };
 
   const isEditablePost: Function = (isEditable: boolean = false) => {
     isEditable ? setEditablePost(true) : setEditablePost(false);
@@ -106,7 +106,7 @@ function App() {
       const newPost = { userId: firstUniquePost.userId, id: newPostId, title: firstUniquePost.title, body: firstUniquePost.body };
       setPosts(posts.concat(newPost));
       postsService.create(newPost);
-      console.log(newPost);
+
       if (!posts.includes(newPost)) {
         reFetchLocal();
         break;

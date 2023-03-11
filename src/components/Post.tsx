@@ -1,8 +1,9 @@
-import { VscPreview, VscEdit, VscError } from 'react-icons/vsc';
+import { VscPreview, VscEdit } from 'react-icons/vsc';
 
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import deletePost from '../helper/deletePost';
+import DeletePostButton from './DeletePostButton';
 
 interface Post {
   pop(): unknown;
@@ -52,16 +53,7 @@ const Post = ({ post, settings, isDarkStripe, selectPost, reFetchLocal }: PostCo
         </button>
       </td>
       <td className="p-0 relative">
-        <button
-          title="Delete Post"
-          className={`flex justify-center items-center w-full h-full  absolute inset-0 hover:shadow-2xl`}
-          onClick={() => {
-            selectPost(id);
-            deletePost(id);
-            reFetchLocal();
-          }}>
-          <VscError className="w-5 h-5 hover:cursor-pointer" />
-        </button>
+        <DeletePostButton id={id} selectPost={selectPost} reFetchLocal={reFetchLocal} />
       </td>
     </tr>
   );
