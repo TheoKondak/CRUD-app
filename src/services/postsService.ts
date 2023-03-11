@@ -113,7 +113,7 @@ const upd = (id, newObject, notification = { message: 'No Message Selected', dur
 
 const del = (id) => {
   const request = axios
-    .delete(`${baseUrl}/${id}`)
+    .delete(`${baseUrl}/posts/${id}`)
     .then(() => {})
     .catch((error) => {
       if (error.response) {

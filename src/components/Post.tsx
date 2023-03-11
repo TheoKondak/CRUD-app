@@ -2,8 +2,18 @@ import { VscPreview, VscEdit, VscError } from 'react-icons/vsc';
 
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import deletePost from '../helper/deletePost';
 
-const Post = ({ post, settings, isDarkStripe, selectPost }: PostComponent) => {
+interface Post {
+  pop(): unknown;
+  id: number;
+  title: String;
+  body: String;
+  userId: number;
+  reFetchLocal: Function;
+}
+
+const Post = ({ post, settings, isDarkStripe, selectPost, reFetchLocal }: PostComponent) => {
   const { id, title, body, userId } = post;
 
   const { postSettings, triggerPostModal, isEditablePost } = settings;
@@ -47,6 +57,8 @@ const Post = ({ post, settings, isDarkStripe, selectPost }: PostComponent) => {
           className={`flex justify-center items-center w-full h-full  absolute inset-0 hover:shadow-2xl`}
           onClick={() => {
             selectPost(id);
+            deletePost(id);
+            reFetchLocal();
           }}>
           <VscError className="w-5 h-5 hover:cursor-pointer" />
         </button>

@@ -35,9 +35,14 @@ function App() {
   // const [editPostBody, setEditPostBody]= useState<string>('')
 
   // Data Fetching
+  const reFetchLocal = () => {
+    setRefetchPosts(!refetchPosts);
+  };
+
   useEffect(() => {
     postsService.get('/posts').then((posts) => {
       setPosts(posts);
+      console.log('refetching', posts);
     });
   }, [refetchPosts]);
 
@@ -57,10 +62,7 @@ function App() {
   // Modal Functions
 
   const triggerPostModal: Function = () => setModalVisible((modalVisible) => !modalVisible);
-  const reFetchPosts = () => {
-    console.log('refetching');
-    setRefetchPosts(!refetchPosts);
-  };
+
   const isEditablePost: Function = (isEditable: boolean = false) => {
     isEditable ? setEditablePost(true) : setEditablePost(false);
     // isEditable ? setModalVisible(true) : setModalVisible(false);
@@ -104,11 +106,14 @@ function App() {
       const newPost = { userId: firstUniquePost.userId, id: newPostId, title: firstUniquePost.title, body: firstUniquePost.body };
       setPosts(posts.concat(newPost));
       postsService.create(newPost);
+      console.log(newPost);
       if (!posts.includes(newPost)) {
+        reFetchLocal();
         break;
       }
     }
   };
+
   return (
     <div className="bg-primary-100 dark:bg-primary-800 flex flex-col items-center justify-start w-full h-full ">
       {settings ? <Header logo={settings.view.logo} darkThemeByDefault={settings.view.theme.darkThemeByDefault} /> : <Loading />}
@@ -129,11 +134,11 @@ function App() {
           </button>
         )}
       </div>
-      <div className="flex items-center justify-center h-4/6 max-w-5/6">{settings && posts ? <Posts posts={posts.filter((post) => (search.length === 0 ? post : post.title.toLowerCase().includes(search)))} settings={{ postSettings: settings.view.post, triggerPostModal, isEditablePost }} selectPost={selectPost} /> : <Loading />}</div>
+      <div className="flex items-center justify-center h-4/6 max-w-5/6">{settings && posts ? <Posts posts={posts.filter((post) => (search.length === 0 ? post : post.title.toLowerCase().includes(search)))} settings={{ postSettings: settings.view.post, triggerPostModal, isEditablePost }} selectPost={selectPost} reFetchLocal={reFetchLocal} /> : <Loading />}</div>
 
       {settings ? <Footer settings={settings.view.footer} /> : <Loading />}
 
-      {settings && posts ? <BaseModalWrapper settings={{ triggerPostModal, modalVisible, isEditablePost, setModalVisible, editablePost, reFetchPosts, selectPost, setEditablePost }} post={post} /> : <Loading />}
+      {settings && posts ? <BaseModalWrapper settings={{ triggerPostModal, modalVisible, isEditablePost, setModalVisible, editablePost, reFetchLocal, selectPost, setEditablePost }} post={post} /> : <Loading />}
     </div>
   );
 }
