@@ -59,6 +59,8 @@ interface Post {
 }
 
 interface Posts {
+  concat(newPost: { userId: number | void; id: number | void; title: string; body: string }): React.SetStateAction<Posts | null>;
+  map(arg0: (post: any) => any): unknown;
   filter(arg0: (post: any) => boolean): Post;
   posts: Post[] | null;
   settings: {
