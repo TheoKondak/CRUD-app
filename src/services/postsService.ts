@@ -111,21 +111,11 @@ const upd = (id, newObject, notification = { message: 'No Message Selected', dur
     });
 };
 
-const del = (id, notification = { message: 'No Message Selected', duration: 5000 }) => {
+const del = (id) => {
   const request = axios
     .delete(`${baseUrl}/${id}`)
-    .then(() => {
-      // notification.setNotificationMessage(notification.message);
-      setTimeout(() => {
-        // notification.setNotificationMessage(null);
-      }, notification.duration);
-    })
+    .then(() => {})
     .catch((error) => {
-      // notification.setNotificationMessage(`Failed to delete entry ${id}`);
-      setTimeout(() => {
-        // notification.setNotificationMessage(null);
-      }, notification.duration);
-
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
