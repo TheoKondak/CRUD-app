@@ -16,12 +16,13 @@ import Search from './components/Search';
 
 function App() {
   const [settings, setSettings] = useState<Settings | null>(null);
-  const [posts, setPosts] = useState<Posts | null>(null);
   const [notificationMessage, setNotificationMessage] = useState(null);
 
   //  Modal
-  const [refetchPosts, setRefetchPosts] = useState<boolean>(false);
+  const [posts, setPosts] = useState<Posts | null>(null);
+  const [externalPosts, setExternalPosts] = useState<Post[] | null>(null);
   const [post, setPost] = useState<Post | null>(null);
+  const [refetchPosts, setRefetchPosts] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [editablePost, setEditablePost] = useState<boolean>(false);
   // const [formInUpdateMode, setFormInUpdateMode] = useState<boolean>(false);
@@ -46,20 +47,25 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    postsService.getExternal('https://jsonplaceholder.typicode.com/posts').then((posts?: Post[]) => {
+      // console.log(posts);
+      setExternalPosts(posts);
+    });
+  }, []);
+
   // Modal Functions
-  // const updateFormMode = (isUpdateMode: boolean = false) => {
-  //   isUpdateMode ? setFormInUpdateMode(true) : setFormInUpdateMode(false);
-  // };
-  const triggerPostModal: React.MouseEventHandler<HTMLDivElement> = () => setModalVisible((modalVisible) => !modalVisible);
+
+  const triggerPostModal: Function = () => setModalVisible((modalVisible) => !modalVisible);
   const reFetchPosts = () => {
     setRefetchPosts(!refetchPosts);
   };
-  const isEditablePost: React.MouseEventHandler<HTMLButtonElement> = (isEdditable: boolean = false) => {
-    isEdditable ? setEditablePost(true) : setEditablePost(false);
-    // isEdditable ? setModalVisible(true) : setModalVisible(false);
+  const isEditablePost: Function = (isEditable: boolean = false) => {
+    isEditable ? setEditablePost(true) : setEditablePost(false);
+    // isEditable ? setModalVisible(true) : setModalVisible(false);
   };
   const selectPost = (postId: number) => {
-    const selectedPost: Post = posts
+    const selectedPost: Post | null = posts
       ? posts.filter((post) => {
           return post.id === Number(postId);
         })
@@ -69,23 +75,50 @@ function App() {
   };
 
   // Search Functions
-  const handleSearchFieldUpdate = (event) => setSearch(event.target.value.toLowerCase());
+  const handleSearchFieldUpdate = (event: React.MouseEventHandler<HTMLDivElement>) => setSearch(event.target.value.toLowerCase());
 
   // Add Post
   const addPost = () => {
     const newPostId: number | void = posts ? Math.max(...posts.map((post) => post.id)) + 1 : console.error('Some Error Occured. Failed to create new post, because post fetching failed');
+    // Since there are no specific instructions for userIds, i decided to just create a new user ID for each new post. This is easy to update.
     const newUserId: number | void = posts ? Math.max(...posts.map((post) => post.userId)) + 1 : console.error('Some Error Occured. Failed to create new post, because post fetching failed');
     const newPost = { userId: newUserId, id: newPostId, title: '', body: '' };
-    setPosts(posts.concat(newPost));
+    posts && setPosts(posts.concat(newPost));
     setPost([newPost]);
 
     triggerPostModal(true);
     isEditablePost(true);
-    // postsService.create(newPost).then((returnedPost) => {
-
-    // });
   };
 
+  // Add Random External Post
+  const addRandomExternalPost: Function = (posts: Post[], externalPosts: Post[]) => {
+    // const isPostInLocalPosts = (post) => posts.some((p) => p.title === post.title || p.body === post.body);
+    // const postsInFirstArray = posts && externalPosts && externalPosts.filter(isPostInLocalPosts);
+    // await console.log(postsInFirstArray);
+
+    for (let i = 0; i < externalPosts.length; i++) {
+      const post = externalPosts[i];
+
+      const firstUniquePost = externalPosts.find((externalPost) => {
+        return !posts.some((localPost) => localPost.title === externalPost.title || localPost.body === externalPost.body) && externalPosts.indexOf(externalPost) === externalPosts.findIndex((post) => post.title === externalPost.title && post.body === externalPost.body);
+      });
+      console.log(firstUniquePost);
+
+      // Creating a new ID because the incoming posts, might have duplicate IDs. So instead I create a new ID
+      const newPostId: number | void = posts ? Math.max(...posts.map((post) => post.id)) + 1 : console.error('Some Error Occured. Failed to create new post, because post fetching failed');
+      const newPost = { userId: firstUniquePost.userId, id: newPostId, title: firstUniquePost.title, body: firstUniquePost.body };
+      setPosts(posts.concat(newPost));
+      postsService.create(newPost);
+
+      if (!posts.includes(post)) {
+        // console.log(`The first unique post is: ${post}`);
+        // console.log(post);
+
+        // refetchPosts;
+        break;
+      }
+    }
+  };
   return (
     <div className="bg-primary-100 dark:bg-primary-800 flex flex-col items-center justify-start w-full h-full ">
       {settings ? <Header logo={settings.view.logo} darkThemeByDefault={settings.view.theme.darkThemeByDefault} /> : <Loading />}
@@ -100,14 +133,11 @@ function App() {
           }}>
           Add Post
         </button>
-        <button
-          className="btn btn-default block"
-          title="Fetch a random post from JSONPlaceholder"
-          onClick={() => {
-            console.log('WIP: Fetch random post');
-          }}>
-          Fetch a random post
-        </button>
+        {externalPosts && posts && (
+          <button className="btn btn-default block" title="Fetch a random post from JSONPlaceholder" onClick={() => addRandomExternalPost(posts, externalPosts)}>
+            Fetch a random post
+          </button>
+        )}
       </div>
       <div className="flex items-center justify-center h-4/6 max-w-5/6">{settings && posts ? <Posts posts={posts.filter((post) => (search.length === 0 ? post : post.title.toLowerCase().includes(search)))} settings={{ postSettings: settings.view.post, triggerPostModal, isEditablePost }} selectPost={selectPost} /> : <Loading />}</div>
 
