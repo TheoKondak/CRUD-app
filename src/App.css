@@ -42,26 +42,30 @@
   }
 
   table {
-    @apply border-2 border-primary-900 dark:border-slate-200  mb-4 p-2;
+    /* @apply border-2 border-primary-900 dark:border-slate-200  mb-4 p-2; */
+    @apply mb-4 p-2;
   }
 
   thead {
-    @apply border-b-2 border-primary-800 dark:border-slate-200 p-2;
+    /* @apply border-b-2 border-primary-800 dark:border-slate-200 p-2; */
+    @apply p-2;
   }
 
   thead-tr {
   }
 
   tr th {
-    @apply p-2 border-r-2 last:border-r-0 border-primary-800 dark:border-slate-200 bg-primary-500;
+    /* @apply p-2 border-r-2 last:border-r-0 border-primary-800 dark:border-slate-200 bg-primary-500; */
+    @apply p-2;
   }
 
   tbody tr {
-    @apply border-b-2 last:border-b-0 border-primary-800 dark:border-slate-200;
+    /* @apply border-b-2 last:border-b-0 border-primary-800 dark:border-slate-200; */
   }
 
   tbody tr td {
-    @apply p-2 border-r-2 last:border-r-0 border-primary-800 dark:border-slate-200;
+    /* @apply p-2 border-r-2 last:border-r-0 border-primary-800 dark:border-slate-200; */
+    @apply p-2 border-r-0 last:border-r-0;
   }
 }
 
@@ -92,15 +96,15 @@
   }
 
   .btn-default {
-    @apply border-2 border-secondary-900 hover:border-tertiary-700 bg-secondary-700 hover:bg-secondary-600;
+    @apply bg-secondary-600 hover:bg-secondary-500;
   }
 
   .btn-success {
-    @apply border-2 border-secondary-900 hover:border-success-700 bg-secondary-700 hover:bg-secondary-600;
+    @apply bg-secondary-700 hover:bg-secondary-600;
   }
 
   .btn-danger {
-    @apply border-2 border-secondary-900 hover:border-danger-700 bg-secondary-700 hover:bg-secondary-600;
+    @apply bg-secondary-700 hover:bg-secondary-600;
   }
 
   ul {

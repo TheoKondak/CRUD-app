@@ -28,7 +28,7 @@ const PostModalDisplayMode: React.FC<PostModalDisplayMode> = ({ settings, post }
           <div className=" w-2/6 flex items-center justify-end">
             <button
               title="Edit Post"
-              className=" px-2 hover:cursor-pointer  flex items-center justify-center hover:text-secondary-500"
+              className=" px-2 hover:cursor-pointer  flex items-center justify-center hover:text-secondary-500 transition delay-150 duration-300 ease-in-out"
               onClick={() => {
                 selectPost(selectedPost.id);
                 isEditablePost(true);

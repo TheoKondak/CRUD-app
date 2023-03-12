@@ -1,4 +1,5 @@
 import { VscError } from 'react-icons/vsc';
+import { toast } from 'react-toastify';
 
 // Helper
 import deletePost from '../helper/deletePost';
@@ -26,6 +27,7 @@ const DeletePostButton = ({ title, text = '', alertMessage = `Are you sure that 
           deletePost(id);
           reFetchLocal();
           customOnClick();
+          toast('Post Deleted');
         }
       }}>
       {icon && <VscError className={`w-5 h-5 hover:cursor-pointer ${text.length > 0 && 'mr-2'}`} />} {text.length > 0 && text}
