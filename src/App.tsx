@@ -88,7 +88,7 @@ function App() {
   const addPost = () => {
     const newPostId: number | void = posts ? Math.max(...posts.map((post) => post.id)) + 1 : console.error('Some Error Occured. Failed to create new post, because post fetching failed');
     // Since there are no specific instructions for userIds, i decided to just create a new user ID for each new post. This is easy to update.
-    const newUserId: number | void = posts ? Math.max(...posts.map((post) => post.userId)) + 1 : console.error('Some Error Occured. Failed to create new post, because post fetching failed');
+    const newUserId: number | void = posts && posts.length > 0 ? Math.max(...posts.map((post) => post.userId)) + 1 : 1;
     const newPost = { userId: newUserId, id: newPostId, title: '', body: '' };
     posts && setPosts(posts.concat(newPost));
     setPost([newPost]);
@@ -123,7 +123,7 @@ function App() {
       {posts && settings && externalPosts ? (
         <div className="w-full">
           <Header logo={settings.view.logo} isDarkTheme={isDarkTheme} setIsDarkTheme={setIsDarkTheme} />
-          <div className="bg-primary-500 dark:bg-primary-700 flex items-center justify-center gap-5 w-5/6 mt-4   md:-mb-10 md:m-10 mx-auto  md:mx-auto pb-14 pt-20 rounded-md shadow-2xl">
+          <div className="bg-primary-800 dark:bg-primary-900 flex items-center justify-center gap-5 w-5/6 mt-4   md:-mb-10 md:m-10 mx-auto  md:mx-auto pb-16 pt-20 rounded-md shadow-2xl">
             <Search placeholder="Search for a post" onChange={handleSearchFieldUpdate} setPosts={setPosts} />
             <button
               className="btn btn-default block"
