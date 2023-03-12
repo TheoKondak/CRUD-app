@@ -29,11 +29,6 @@ interface Footer {
 
 // Utility Components
 
-interface Loading {
-  type?: string;
-  color?: string;
-}
-
 interface Logo {
   src: string;
   alt: string;

@@ -116,29 +116,50 @@ function App() {
 
   return (
     <div className="bg-primary-100 dark:bg-primary-800 flex flex-col items-center justify-start w-full h-full ">
-      {settings ? <Header logo={settings.view.logo} darkThemeByDefault={settings.view.theme.darkThemeByDefault} /> : <Loading />}
-      <div className="bg-primary-500 dark:bg-primary-700 flex items-center justify-center gap-5 w-5/6 mt-4 -mb-10  md:-mb-10  mx-auto md:m-10 pb-14 pt-20 rounded-md shadow-2xl">
-        <Search placeholder="Search for a post" onChange={handleSearchFieldUpdate} setPosts={setPosts} />
+      {posts && settings && externalPosts ? (
+        <div className="w-full">
+          <Header logo={settings.view.logo} darkThemeByDefault={settings.view.theme.darkThemeByDefault} />
+          <div className="bg-primary-500 dark:bg-primary-700 flex items-center justify-center gap-5 w-5/6 mt-4   md:-mb-10 md:m-10 mx-auto  md:mx-auto pb-14 pt-20 rounded-md shadow-2xl">
+            <Search placeholder="Search for a post" onChange={handleSearchFieldUpdate} setPosts={setPosts} />
+            <button
+              className="btn btn-default block"
+              title="Add a new post"
+              onClick={() => {
+                addPost();
+              }}>
+              Add Post
+            </button>
 
-        <button
-          className="btn btn-default block"
-          title="Add a new post"
-          onClick={() => {
-            addPost();
-          }}>
-          Add Post
-        </button>
-        {externalPosts && posts && (
-          <button className="btn btn-default block" title="Fetch a random post from JSONPlaceholder" onClick={() => addRandomExternalPost(posts, externalPosts)}>
-            Fetch a random post
-          </button>
-        )}
-      </div>
-      <div className="flex items-center justify-center h-4/6 max-w-5/6">{settings && posts ? <Posts posts={posts.filter((post) => (search.length === 0 ? post : post.title.toLowerCase().includes(search)))} settings={{ postSettings: settings.view.post, triggerPostModal, isEditablePost }} selectPost={selectPost} reFetchLocal={reFetchLocal} /> : <Loading />}</div>
+            <button className="btn btn-default block" title="Fetch a random post from JSONPlaceholder" onClick={() => addRandomExternalPost(posts, externalPosts)}>
+              Fetch a random post
+            </button>
+          </div>
+          <div className="flex items-center justify-center h-4/6 max-w-5/6">
+            <Posts posts={posts.filter((post) => (search.length === 0 ? post : post.title.toLowerCase().includes(search)))} settings={{ postSettings: settings.view.post, triggerPostModal, isEditablePost }} selectPost={selectPost} reFetchLocal={reFetchLocal} />
+          </div>
 
-      {settings ? <Footer settings={settings.view.footer} /> : <Loading />}
+          <Footer settings={settings.view.footer} />
 
-      {settings && posts ? <BaseModalWrapper settings={{ triggerPostModal, modalVisible, isEditablePost, setModalVisible, editablePost, reFetchLocal, selectPost, setEditablePost }} post={post} /> : <Loading />}
+          <BaseModalWrapper settings={{ triggerPostModal, modalVisible, isEditablePost, setModalVisible, editablePost, reFetchLocal, selectPost, setEditablePost }} post={post} />
+        </div>
+      ) : (
+        <Loading
+          loadingData={[
+            {
+              text: 'Posts',
+              data: posts,
+            },
+            {
+              text: 'Settings',
+              data: settings,
+            },
+            {
+              text: 'External Posts',
+              data: externalPosts,
+            },
+          ]}
+        />
+      )}
     </div>
   );
 }
