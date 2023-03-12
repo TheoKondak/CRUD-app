@@ -10,15 +10,15 @@ Create a simple CRUD application using React and [JSONPlaceholder](https://jsonp
 - 🟢 Retrieve and display a list of posts
 - 🟢 Create new post (showing a simple form in place that submit data)
 displaying the created data when submitted
-- 🔴 Delete a post (with a button for each element in the list)
-- 🔴 Update a post (with a button for each element in the list, showing a form in
+- 🟢 Delete a post (with a button for each element in the list)
+- 🟢 Update a post (with a button for each element in the list, showing a form in
 place with data to update) displaying the updated data when submitted
 - 🟠 Show us your design skills, giving a better look to what you’ve done (using
 pure CSS or a framework)
 
 ### Bonus:
 - 🟢 Use a database or local storage to store the data
-- 🔴 Display user feedbacks (e.g. toast messages) when needed
+- 🟢 Display user feedbacks (e.g. toast messages) when needed
 - 🟢 Use Typescript
 - 🔴 Deploy
 - 🟢 Count the number of words and letters
@@ -28,6 +28,8 @@ pure CSS or a framework)
 
 - 🔴 Document the application inside `README.md`
 - 🔴 Run some unit tests
+- 🟢 Add Markdown Support
+- 🟢 Add textarea words/letters count
 
 > 🟢 Done  <br/>
 > 🟠 Doing <br/>
@@ -106,6 +108,9 @@ Input handling is being managed by [React Edit Text](https://github.com/bymi15/r
 
 [Tailwind CSS](https://tailwindcss.com/docs/installation) provides a quick and safe way to create a stylized template. The documentation is stellar, and the framework is well tested and used in production by many large companies. It also allows for a quick Dark theme mode, a feature which is utilized in this project. See [Theme section](https://github.com/madewithlove/technical-assignment-front-end-engineer-TheoKondak#theme) for more.
 
+### Toasts
+
+For displaying toasts [React Toastify](https://github.com/fkhadra/react-toastify) was the easiest and most straightforward solution. It is also well maintained with a lot of available options.
 
 ### Code Linting
 
@@ -136,6 +141,7 @@ The colors of the theme, are inspired by the color palette used in [Tapioview.co
 
 - https://tailwindcss.com/docs/customizing-colors
 - https://tailwindcss.com/docs/installation
+- https://gist.github.com/Merott/d2a19b32db07565e94f10d13d11a8574
 
 ### Setting Up the project (Vite, React, TypeScript, Vitest, Testing-Library, Eslint, Prettier)
 
@@ -160,3 +166,7 @@ The colors of the theme, are inspired by the color palette used in [Tapioview.co
 ### React Markdown
 
 - https://github.com/remarkjs/react-markdown
+
+### React Toastify
+
+- https://fkhadra.github.io/react-toastify/introduction/
