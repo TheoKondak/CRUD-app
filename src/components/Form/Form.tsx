@@ -14,9 +14,11 @@ type Props = {
   setModalVisible: Function;
   post: Post;
   reFetchLocal: Function;
+  setPosts: Function;
+  posts: Post[];
 };
 
-const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal }: Props) => {
+const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal, posts, setPosts }: Props) => {
   const unchangedPost = post;
   const [postTitle, setPostTitle] = useState(post.title);
   const [postBody, setPostBody] = useState(post.body);
@@ -41,7 +43,7 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal }: Props) =>
         postsService.upd(`posts/${post.id}`, updatedPost);
         isEditablePost(false);
         setModalVisible(false);
-
+        setPosts(posts.concat(updatedPost));
         reFetchLocal();
       }
     } else {
@@ -49,11 +51,12 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal }: Props) =>
         if (window.confirm(`Cannot Save a post with an empty title. \n Press ok to exit without saving, or cancel to continue editing`)) {
           isEditablePost(false);
           setModalVisible(false);
+          toast('Exited without Saving');
         }
       } else {
         const updatedPost = { ...post, title: postTitle, body: postBody };
-
         postsService.create(updatedPost);
+        toast('Post Saved');
         isEditablePost(false);
         setModalVisible(false);
         reFetchLocal();
@@ -64,7 +67,6 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal }: Props) =>
   const onSubmitAndClose = (event) => {
     event.preventDefault();
     onSubmit(event);
-    toast('Post Saved');
   };
 
   const onCancel: Function = (event) => {
@@ -123,7 +125,7 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal }: Props) =>
           }}>
           <VscDebugRestart className="inline-block w-4 h-4 mr-2" /> Reset
         </button>
-        <button title="Delete Post" className={`btn btn-default`} onClick={onCancel}>
+        <button title="Cancel" className={`btn btn-default`} onClick={onCancel}>
           <VscError className="inline-block" /> Cancel
         </button>
       </div>

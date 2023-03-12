@@ -19,7 +19,7 @@ const Post = ({ post, settings, selectPost, reFetchLocal }: PostComponent) => {
   const { id, title, body, userId } = post;
 
   const { postSettings, triggerPostModal, isEditablePost } = settings;
-  console.log(userId);
+  // console.log(userId);
   return useMemo(
     () => (
       <tr className={` bg-primary-100 dark:bg-primary-800 text-primary-900 dark:text-white border-b-[1px] last:border-b-0 border-slate-300 shadow-2xl`}>

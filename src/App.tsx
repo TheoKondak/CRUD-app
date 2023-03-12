@@ -40,6 +40,7 @@ function App() {
   // Data Fetching
   const reFetchLocal = () => {
     setRefetchPosts(!refetchPosts);
+    // console.log('refetched');
   };
 
   useEffect(() => {
@@ -86,12 +87,14 @@ function App() {
 
   // Add Post
   const addPost = () => {
-    const newPostId: number | void = posts ? Math.max(...posts.map((post) => post.id)) + 1 : console.error('Some Error Occured. Failed to create new post, because post fetching failed');
+    const newPostId: number | void = posts && posts.length > 0 ? Math.max(...posts.map((post) => post.id)) + 1 : 1;
     // Since there are no specific instructions for userIds, i decided to just create a new user ID for each new post. This is easy to update.
     const newUserId: number | void = posts && posts.length > 0 ? Math.max(...posts.map((post) => post.userId)) + 1 : 1;
     const newPost = { userId: newUserId, id: newPostId, title: '', body: '' };
-    posts && setPosts(posts.concat(newPost));
+
     setPost([newPost]);
+
+    // console.log('userid:', newUserId, 'id:', newPostId);
 
     triggerPostModal(true);
     isEditablePost(true);
@@ -117,7 +120,7 @@ function App() {
       }
     }
   };
-  console.log(isDarkTheme);
+  console.log(posts);
   return (
     <div className="bg-primary-100 dark:bg-primary-800 flex flex-col items-center justify-start w-full h-full ">
       {posts && settings && externalPosts ? (
@@ -144,8 +147,8 @@ function App() {
 
           <Footer settings={settings.view.footer} />
 
-          <BaseModalWrapper settings={{ triggerPostModal, modalVisible, isEditablePost, setModalVisible, editablePost, reFetchLocal, selectPost, setEditablePost }} post={post} />
-          <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme={isDarkTheme ? 'dark' : 'light'} />
+          <BaseModalWrapper settings={{ triggerPostModal, modalVisible, isEditablePost, setModalVisible, editablePost, reFetchLocal, selectPost, setEditablePost }} post={post} setPost={setPost} posts={posts} />
+          <ToastContainer position="top-center" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme={isDarkTheme ? 'dark' : 'light'} />
         </div>
       ) : (
         <Loading

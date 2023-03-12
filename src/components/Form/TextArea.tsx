@@ -8,12 +8,12 @@ function TextArea({ onBlur, value }: Textarea) {
   const onInputChange = (event) => setTextAreaValue(event.target.value);
 
   useEffect(() => {
-    console.log('useEffect');
+    // console.log('useEffect');
     setTextAreaValue(value);
   }, [value]);
 
   // const onBlur
-  console.log('textarea');
+  // console.log('textarea');
 
   return (
     <div id="edit-post" className="relative h-full">

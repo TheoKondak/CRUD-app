@@ -12,7 +12,7 @@ const Input = ({ onBlur, value }: Input) => {
   const onInputChange = (event: React.FormEvent<HTMLInputElement>) => setInputValue(event.target.value);
 
   useEffect(() => {
-    console.log('useEffect');
+    // console.log('useEffect');
     setInputValue(value);
   }, [value]);
 
