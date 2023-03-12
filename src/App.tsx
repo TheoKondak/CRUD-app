@@ -112,15 +112,14 @@ function App() {
       const newPostId: number | void = posts ? Math.max(...posts.map((post) => post.id)) + 1 : console.error('Some Error Occured. Failed to create new post, because post fetching failed');
       const newPost = { userId: firstUniquePost.userId, id: newPostId, title: firstUniquePost.title, body: firstUniquePost.body };
       setPosts(posts.concat(newPost));
-      postsService.create(newPost);
+      postsService.create(newPost).then(() => reFetchLocal());
       toast('New Post Fetched');
       if (!posts.includes(newPost)) {
-        reFetchLocal();
         break;
       }
     }
   };
-  console.log(posts);
+
   return (
     <div className="bg-primary-100 dark:bg-primary-800 flex flex-col items-center justify-start w-full h-full ">
       {posts && settings && externalPosts ? (

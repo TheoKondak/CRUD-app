@@ -1,6 +1,5 @@
 import axios from 'axios';
-const baseUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
-
+const baseUrl = import.meta.env.VITE_LOCALHOST_EXPOSED || import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
 const get = (query: string) => {
   const request = axios.get(baseUrl + query);
   return request

@@ -43,8 +43,7 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal, posts, setP
         postsService.upd(`posts/${post.id}`, updatedPost);
         isEditablePost(false);
         setModalVisible(false);
-        setPosts(posts.concat(updatedPost));
-        reFetchLocal();
+        setPosts(posts.concat(updatedPost)).then(() => reFetchLocal());
       }
     } else {
       if (postTitle.length === 0) {
@@ -55,11 +54,10 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal, posts, setP
         }
       } else {
         const updatedPost = { ...post, title: postTitle, body: postBody };
-        postsService.create(updatedPost);
+        postsService.create(updatedPost).then(() => reFetchLocal());
         toast('Post Saved');
         isEditablePost(false);
         setModalVisible(false);
-        reFetchLocal();
       }
     }
   };
