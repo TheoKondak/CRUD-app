@@ -5,7 +5,7 @@ import remarkGfm from 'remark-gfm';
 import deletePost from '../helper/deletePost';
 import DeletePostButton from './DeletePostButton';
 
-interface Post {
+export interface Post {
   pop(): unknown;
   id: number;
   title: String;

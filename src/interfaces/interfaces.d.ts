@@ -57,3 +57,7 @@ interface PostSettings {
 interface postPreviewLength {
   postPreviewLength;
 }
+
+type HTMLElementEvent<T extends HTMLElement> = Event & {
+  target: T;
+};

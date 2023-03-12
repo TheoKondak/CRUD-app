@@ -26,7 +26,6 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal }: Props) =>
 
   const onSubmit: Function = (event) => {
     event.preventDefault();
-
     const existsOnServer = serverPosts.filter((serverPost) => serverPost.id === post.id).length === 0 ? false : true;
 
     if (existsOnServer) {
@@ -40,6 +39,7 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal }: Props) =>
         postsService.upd(`posts/${post.id}`, updatedPost);
         isEditablePost(false);
         setModalVisible(false);
+
         reFetchLocal();
       }
     } else {
@@ -87,21 +87,21 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal }: Props) =>
     setPostBody(unchangedPost.body);
   };
 
-  const onChangeInputTitleUpdate = (event) => setPostTitle(event.target.value);
+  const onBlurInputTitleUpdate = (event) => setPostTitle(event.target.value);
 
-  const onChangeTextareaBodyUpdate = (event) => setPostBody(event.target.value);
+  const onBlurTextareaBodyUpdate = (event) => setPostBody(event.target.value);
 
   return (
     <form id={`post-${post.id}`} className={`relative h-full w-full text-white  px-4 py-4 mx-auto z-20`}>
       <div id={`post-${post.id}-header`} className=" flex items-center justify-between">
-        <Input onChange={onChangeInputTitleUpdate} value={postTitle} />
+        <Input onBlur={onBlurInputTitleUpdate} value={postTitle} />
       </div>
       <button name="Close Post" className="absolute -top-5 -right-5 w-7 h-7 flex items-center justify-center hover:cursor-pointer bg-secondary-600 dark:bg-primary-700 text-white  shadow-lg rounded-full" onClick={onCancel}>
         <VscCloseAll />
       </button>
       <hr />
       <div id={`post-${post.id}-body`} className="text-md pt-2 h-4/6">
-        <TextArea onChange={onChangeTextareaBodyUpdate} value={postBody} />
+        <TextArea onBlur={onBlurTextareaBodyUpdate} value={postBody} />
       </div>
       <div className=" w-full flex items-center justify-end flex-wrap md:flex-nowrap gap-2 my-2">
         <button title="Save Post" className={`btn btn-success`} onClick={onSubmitAndClose}>
