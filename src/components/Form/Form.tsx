@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 
 import { VscSaveAll, VscError, VscCloseAll, VscDebugRestart } from 'react-icons/vsc';
 
+import { toast } from 'react-toastify';
+
 import postsService from '../../services/postsService';
 import DeletePostButton from '../DeletePostButton';
 import Input from './Input';
@@ -62,9 +64,7 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal }: Props) =>
   const onSubmitAndClose = (event) => {
     event.preventDefault();
     onSubmit(event);
-
-    // isEditablePost(false);
-    // setModalVisible(false);
+    toast('Post Saved');
   };
 
   const onCancel: Function = (event) => {
@@ -74,6 +74,7 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal }: Props) =>
       if (window.confirm(`Are you sure you want to exit? Changes will be lost.`)) {
         isEditablePost(false);
         setModalVisible(false);
+        toast('Exited post without saving');
       }
     } else {
       isEditablePost(false);
@@ -85,10 +86,11 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal }: Props) =>
     event?.preventDefault();
     setPostTitle(unchangedPost.title);
     setPostBody(unchangedPost.body);
+    toast('Changes reset');
   };
 
+  // Handle Form Fields Updates. Used on Blur to update this component, to prevent unnecessary rerenders of the whole Form component.
   const onBlurInputTitleUpdate = (event) => setPostTitle(event.target.value);
-
   const onBlurTextareaBodyUpdate = (event) => setPostBody(event.target.value);
 
   return (

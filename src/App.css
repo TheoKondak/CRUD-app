@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* React Toastify */
+    --toastify-color-progress-light: var(--color-primary-900);
+    /* Used when no type is provided */
+    --toastify-color-progress-dark: var(--color-primary-400);
+  }
+
   h1 {
     @apply text-2xl mb-4;
   }

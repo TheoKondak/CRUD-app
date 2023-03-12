@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // Services
 import postsService from './services/postsService';
 
@@ -16,7 +19,7 @@ import Search from './components/Search';
 
 function App() {
   const [settings, setSettings] = useState<Settings | null>(null);
-  const [notificationMessage, setNotificationMessage] = useState(null);
+  const [isDarkTheme, setIsDarkTheme] = useState<boolean | null>(null);
 
   //  Modal
   const [posts, setPosts] = useState<Posts | null>(null);
@@ -48,6 +51,7 @@ function App() {
   useEffect(() => {
     postsService.get('/settings').then((settings?: Object) => {
       setSettings(settings);
+      setIsDarkTheme(settings.view.theme.darkThemeByDefault);
     });
   }, []);
 
@@ -106,19 +110,19 @@ function App() {
       const newPost = { userId: firstUniquePost.userId, id: newPostId, title: firstUniquePost.title, body: firstUniquePost.body };
       setPosts(posts.concat(newPost));
       postsService.create(newPost);
-
+      toast('New Post Fetched');
       if (!posts.includes(newPost)) {
         reFetchLocal();
         break;
       }
     }
   };
-
+  console.log(isDarkTheme);
   return (
     <div className="bg-primary-100 dark:bg-primary-800 flex flex-col items-center justify-start w-full h-full ">
       {posts && settings && externalPosts ? (
         <div className="w-full">
-          <Header logo={settings.view.logo} darkThemeByDefault={settings.view.theme.darkThemeByDefault} />
+          <Header logo={settings.view.logo} isDarkTheme={isDarkTheme} setIsDarkTheme={setIsDarkTheme} />
           <div className="bg-primary-500 dark:bg-primary-700 flex items-center justify-center gap-5 w-5/6 mt-4   md:-mb-10 md:m-10 mx-auto  md:mx-auto pb-14 pt-20 rounded-md shadow-2xl">
             <Search placeholder="Search for a post" onChange={handleSearchFieldUpdate} setPosts={setPosts} />
             <button
@@ -141,6 +145,7 @@ function App() {
           <Footer settings={settings.view.footer} />
 
           <BaseModalWrapper settings={{ triggerPostModal, modalVisible, isEditablePost, setModalVisible, editablePost, reFetchLocal, selectPost, setEditablePost }} post={post} />
+          <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme={isDarkTheme ? 'dark' : 'light'} />
         </div>
       ) : (
         <Loading
