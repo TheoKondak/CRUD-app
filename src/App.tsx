@@ -121,11 +121,11 @@ function App() {
   };
 
   return (
-    <div className="bg-primary-100 dark:bg-primary-800 flex flex-col items-center justify-start w-full h-screen ">
+    <div className="bg-primary-100 dark:bg-slate-500 flex flex-col items-center justify-start w-full h-screen ">
       {posts && settings && externalPosts ? (
         <div className="w-full h-full inset-0 fixed overflow-hidden flex flex-col items-stretch justify-between ">
           <Header logo={settings.view.logo} isDarkTheme={isDarkTheme} setIsDarkTheme={setIsDarkTheme} />
-          <div className="bg-primary-800 dark:bg-primary-900 flex flex-col md:flex-row items-center justify-center gap-5 w-5/6 mt-4 -mb-8 md:-mb-10 md:m-10 mx-auto md:mx-auto pb-16 p-10 md:pt-20 rounded-md shadow-2xl">
+          <div className="bg-primary-800 dark:bg-primary-800 flex flex-col md:flex-row items-center justify-center gap-5 w-5/6 mt-4 -mb-8 md:-mb-10 md:m-10 mx-auto md:mx-auto pb-16 p-10 md:pt-20 rounded-md shadow-2xl">
             <div className="w-5/6 flex items-center justify-center">
               <Search placeholder="Search for a post" onChange={handleSearchFieldUpdate} setPosts={setPosts} />
             </div>
@@ -144,7 +144,7 @@ function App() {
               </button>
             </div>
           </div>
-          <div className="flex items-start justify-center max-w-5/6 h-5/6 overflow-y-auto">
+          <div className="flex items-start justify-center max-w-5/6 h-5/6 rounded-md overflow-y-auto">
             <Posts posts={posts.filter((post) => (search.length === 0 ? post : post.title.toLowerCase().includes(search)))} settings={{ postSettings: settings.view.post, triggerPostModal, isEditablePost }} selectPost={selectPost} reFetchLocal={reFetchLocal} />
           </div>
 

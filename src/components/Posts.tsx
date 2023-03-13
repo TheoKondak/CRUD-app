@@ -4,24 +4,24 @@ const Posts: React.FC<Posts> = ({ posts, settings, selectPost, reFetchLocal }) =
   return (
     <div id="posts" className="flex flex-column items-center justify-center lg:max-w-screen-md xl:max-w-7xl m-4 mt-0 md:mt-0 mx-auto md:m-10 w-full">
       {posts.length > 0 ? (
-        <div className="w-full text-sm text-left backdrop-blur-md  relative border-collapse">
-          <div id="posts-head" className="grid grid-cols-table lg:grid-cols-table-lg sticky top-0 z-20">
-            <div id="post-id" className="p-4 text-left whitespace-nowrap rounded-tl-md rounded-bl-md bg-secondary-600 mb-5 dark:bg-tertiary-700 text-white flex items-center justify-center">
+        <div className="w-full text-sm text-left backdrop-blur-md  relative">
+          <div id="posts-head" className="grid grid-cols-table lg:grid-cols-table-lg sticky top-0 z-20 ">
+            <div id="post-id" className="p-4 text-left whitespace-nowrap rounded-tl-md rounded-bl-md  bg-tertiary-600 mb-5 dark:bg-slate-700 text-white flex items-center justify-center">
               <span>Post ID</span>
             </div>
-            <div id="post-content" className="p-4 whitespace-nowrap bg-secondary-600 mb-5 dark:bg-tertiary-700 text-white flex items-center justify-center">
+            <div id="post-content" className="p-4 whitespace-nowrap  bg-tertiary-600 mb-5 dark:bg-slate-700 text-white flex items-center justify-center">
               <span>Content</span>
             </div>
-            <div id="Created By" className="p-4 whitespace-nowrap text-center bg-secondary-600 mb-5 dark:bg-tertiary-700 text-white flex items-center justify-center">
+            <div id="Created By" className="p-4 whitespace-nowrap text-center  bg-tertiary-600 mb-5 dark:bg-slate-700 text-white flex items-center justify-center">
               <span>Created By</span>
             </div>
-            <div id="view-post-modal" className="p-4 whitespace-nowrap text-center bg-secondary-600 mb-5 dark:bg-tertiary-700 text-white flex items-center justify-center">
+            <div id="view-post-modal" className="p-4 whitespace-nowrap text-center  bg-tertiary-600 mb-5 dark:bg-slate-700 text-white flex items-center justify-center">
               <span>View</span>
             </div>
-            <div id="edit-post-modal" className="p-4 whitespace-nowrap text-center bg-secondary-600 mb-5 dark:bg-tertiary-700 text-white flex items-center justify-center">
+            <div id="edit-post-modal" className="p-4 whitespace-nowrap text-center  bg-tertiary-600 mb-5 dark:bg-slate-700 text-white flex items-center justify-center">
               <span>Edit</span>
             </div>
-            <div id="delete-post" className="p-4 whitespace-nowrap text-center rounded-tr-md rounded-br-md bg-secondary-600 mb-5 dark:bg-tertiary-700 text-white flex items-center justify-center">
+            <div id="delete-post" className="p-4 whitespace-nowrap text-center rounded-tr-md rounded-br-md  bg-tertiary-600 mb-5 dark:bg-slate-700 text-white flex items-center justify-center">
               <span>Delete</span>
             </div>
           </div>
