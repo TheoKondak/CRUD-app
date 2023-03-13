@@ -11,6 +11,7 @@
         "darkThemeByDefault": false
       },
       "post": {
+        "postTitleLength": 100,
         "postPreviewLength": 160
       },
       "footer": {
