@@ -99,7 +99,7 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal }: Props) =>
       <div id={`post-${post.id}-header`} className=" flex items-center justify-between">
         <Input onBlur={onBlurInputTitleUpdate} value={postTitle} />
       </div>
-      <button name="Close Post" className="absolute -top-5 -right-5 w-7 h-7 flex items-center justify-center hover:cursor-pointer bg-secondary-600 dark:bg-primary-700 text-white  shadow-lg rounded-full" onClick={onCancel}>
+      <button name="Close Post" className="absolute -top-5 -right-5 w-7 h-7 flex items-center justify-center hover:cursor-pointer bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-white shadow-lg rounded-full" onClick={onCancel}>
         <VscCloseAll />
       </button>
       <hr />
