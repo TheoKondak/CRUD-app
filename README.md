@@ -28,7 +28,8 @@
 
 # Crud App
 
-
+TODO some improvements could be adding a created/last edited dates. And after that capabilities like history etc are easily achievable.
+TODO The application is not ready to be deployed. There are some outstanding Typescript issues that need to be resolved before a build version could generated.
 
 ## Specifications
 

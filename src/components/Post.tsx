@@ -12,16 +12,25 @@ const Post = ({ post, settings, selectPost, reFetchLocal }: PostComponent) => {
   const { postSettings, triggerPostModal, isEditablePost } = settings;
   return useMemo(
     () => (
-      <tr className={` bg-primary-100 dark:bg-primary-800 text-primary-900 dark:text-white border-b-[1px] last:border-b-0 border-slate-300 shadow-2xl my-10`}>
-        <td className="p-2 pl-4 ">{id}</td>
-        <td className="p-2">{title}</td>
-        <td className="p-2 max-h-[100px] overflow-y-auto">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{body.length > Number(postSettings.postPreviewLength) ? `${body.substring(0, Number(postSettings.postPreviewLength))}...` : body}</ReactMarkdown>
-        </td>
-        <td className="p-2 pl-4">
+      <div className={` bg-primary-100 dark:bg-primary-800 text-primary-900 dark:text-white shadow-2xl rounded-xl grid grid-cols-table lg:grid-cols-table-lg my-2 first:mt-0 last:mb-0`}>
+        <div className="p-2 pl-4 flex items-center justify-center">
+          <span>{id}</span>
+        </div>
+
+        <div className="p-2 flex flex-col items-start justify-center">
+          <div>
+            <h3 className="text-md text-left pb-1 mb-1">{title}</h3>
+            <hr className="my-2 border-1 border-primary-800 dark:border-primary-200 shadow-lg" />
+          </div>
+
+          <div className="max-h-[100px] overflow-y-auto flex items-center justify-center">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{body.length > Number(postSettings.postPreviewLength) ? `${body.substring(0, Number(postSettings.postPreviewLength))}...` : body}</ReactMarkdown>
+          </div>
+        </div>
+        <div className="p-2 pl-4  flex items-center justify-center">
           <div className="flex justify-center items-center">{userId}</div>
-        </td>
-        <td className="p-0 relative">
+        </div>
+        <div className="p-0 relative flex items-center justify-center ">
           <button
             title="View Post"
             className={`flex justify-center items-center w-full h-full  absolute inset-0 hover:shadow-2xl`}
@@ -31,8 +40,8 @@ const Post = ({ post, settings, selectPost, reFetchLocal }: PostComponent) => {
             }}>
             <VscPreview className="w-5 h-5 hover:cursor-pointer" />
           </button>
-        </td>
-        <td className="p-0 relative">
+        </div>
+        <div className="p-0 relative flex items-center justify-center">
           <button
             title="Edit Post"
             className={`flex justify-center items-center w-full h-full  absolute inset-0 hover:shadow-2xl`}
@@ -43,11 +52,11 @@ const Post = ({ post, settings, selectPost, reFetchLocal }: PostComponent) => {
             }}>
             <VscEdit className="w-5 h-5 hover:cursor-pointer" />
           </button>
-        </td>
-        <td className="p-0 relative">
+        </div>
+        <div className="p-0 relative flex items-center justify-center">
           <DeletePostButton id={id} selectPost={selectPost} reFetchLocal={reFetchLocal} />
-        </td>
-      </tr>
+        </div>
+      </div>
     ),
     [post, settings, selectPost, reFetchLocal]
   );

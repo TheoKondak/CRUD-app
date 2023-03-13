@@ -24,6 +24,13 @@ module.exports = {
       fontFamily: {
         'roboto-condensed': ['"Roboto Condensed"', 'cursive'],
       },
+      gridTemplateColumns: {
+        // Simple 8 row grid
+        table: '8ch auto 12ch 7ch 7ch 9ch',
+
+        // Complex site-specific row configuration
+        'table-lg': '8ch auto 12ch 7ch 7ch 9ch',
+      },
     },
   },
   plugins: [
