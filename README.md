@@ -1,4 +1,34 @@
-# A simple CRUD App
+- [Crud App](#crud-app)
+  - [Specifications](#specifications)
+    - [Bonus:](#bonus)
+    - [Extra](#extra)
+  - [Starting the app](#starting-the-app)
+  - [API Schema](#api-schema)
+  - [Diagram Flow](#diagram-flow)
+  - [Technologies and Packages](#technologies-and-packages)
+    - [Axios](#axios)
+    - [React](#react)
+    - [React Edit Text](#react-edit-text)
+    - [Tailwind CSS](#tailwind-css)
+    - [Toasts](#toasts)
+    - [Code Linting](#code-linting)
+  - [Theme](#theme)
+  - [Issues](#issues)
+    - [Known Issues](#known-issues)
+    - [Fixed Issues](#fixed-issues)
+  - [Resources](#resources)
+    - [Typescript](#typescript)
+    - [Tailwind CSS](#tailwind-css-1)
+    - [Setting Up the project (Vite, React, TypeScript, Vitest, Testing-Library, Eslint, Prettier)](#setting-up-the-project-vite-react-typescript-vitest-testing-library-eslint-prettier)
+    - [Vitest, React Testing Library](#vitest-react-testing-library)
+    - [Fix input lag for Input and Textarea](#fix-input-lag-for-input-and-textarea)
+    - [React Markdown](#react-markdown)
+    - [React Toastify](#react-toastify)
+
+
+# Crud App
+
+
 
 ## Specifications
 
@@ -34,7 +64,6 @@ pure CSS or a framework)
 > 🟢 Done  <br/>
 > 🟠 Doing <br/>
 > 🔴 ToDo <br/>
-
 
 ## Starting the app
 
@@ -124,11 +153,11 @@ The colors of the theme, are inspired by the color palette used in [Tapioview.co
 
 ### Known Issues
 
-- Body Textarea is a bit laggy. Here is a resource [talking about it](https://dev.to/kevinkh89/how-to-solve-input-delay-lagging-in-react-j2o)
-
+- The Table html element is not ideal for responsive design, so the smartphone screen could use some better UI/UX. One solution could be to recreate the table in either css grid or flex.
 
 ### Fixed Issues
 
+- Body Textarea is a bit laggy. Here is a resource [talking about it](https://dev.to/kevinkh89/how-to-solve-input-delay-lagging-in-react-j2o)
 - As of now Reset/Save post etc are not working properly. Issue happened at [415920f52eff64a755ce24f88b42d7dba4b4302b](https://github.com/TheoKondak/CRUD-app/tree/415920f52eff64a755ce24f88b42d7dba4b4302b)
 
 ## Resources
