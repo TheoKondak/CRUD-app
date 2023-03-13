@@ -1,20 +1,3 @@
-import Post from './Post';
-
-export interface Posts {
-  concat(newPost: { userId: number | void; id: number | void; title: string; body: string }): React.SetStateAction<Posts | null>;
-  map(arg0: (post: any) => any): unknown;
-  filter(arg0: (post: any) => boolean): Post;
-  posts: Post[] | null;
-  settings: {
-    postSettings: PostSettings | null;
-    triggerPostModal: React.MouseEventHandler<HTMLDivElement>;
-    isEditablePost: React.MouseEventHandler<HTMLDivElement>;
-    setFormInUpdateMode: Function;
-  };
-  selectPost: Function;
-  reFetchLocal: Function;
-}
-
 const Posts: React.FC<Posts> = ({ posts, settings, selectPost, reFetchLocal }) => {
   return (
     <div id="posts" className="flex flex-column items-center justify-center  lg:max-w-screen-md xl:max-w-7xl m-4 mt-0 md:mt-0 mx-auto md:m-10 w-full ">

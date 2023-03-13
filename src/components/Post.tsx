@@ -6,15 +6,6 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import DeletePostButton from './DeletePostButton';
 
-export interface Post {
-  pop(): unknown;
-  id: number;
-  title: String;
-  body: String;
-  userId: number;
-  reFetchLocal: Function;
-}
-
 const Post = ({ post, settings, selectPost, reFetchLocal }: PostComponent) => {
   const { id, title, body, userId } = post;
 
