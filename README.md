@@ -1,8 +1,16 @@
 - [Crud App](#crud-app)
+  - [About the app](#about-the-app)
+    - [Header](#header)
+    - [Masthead](#masthead)
+    - [Posts list](#posts-list)
+    - [Toast Message / Notifications](#toast-message--notifications)
+    - [Some considerations](#some-considerations)
   - [Specifications](#specifications)
     - [Bonus:](#bonus)
     - [Extra](#extra)
   - [Starting the app](#starting-the-app)
+    - [Setup JSON server to be able to work on localhost](#setup-json-server-to-be-able-to-work-on-localhost)
+    - [Local Env setup](#local-env-setup)
   - [API Schema](#api-schema)
   - [Diagram Flow](#diagram-flow)
   - [Technologies and Packages](#technologies-and-packages)
@@ -26,10 +34,71 @@
     - [React Toastify](#react-toastify)
 
 
+
 # Crud App
 
-TODO some improvements could be adding a created/last edited dates. And after that capabilities like history etc are easily achievable.
-TODO The application is not ready to be deployed. There are some outstanding Typescript issues that need to be resolved before a build version could generated.
+
+## About the app
+
+This is a simple crud app, with a minimal approach to design. For displaying and editing posts, a modal was created.
+
+The default view of the application is a simple CRUD view. 
+
+### Header
+
+On top there is a header with a logo, and a dark mode toggle button. 
+
+- The logo settings, like source, alt, dimensions are being fetched by the API Server.
+
+### Masthead
+
+Then there is a masthead with a search input field, an `Add Post` button and a `Conjure` button.
+
+- The search field searches the between the titles of the post.
+- `Add Post`, pops the modal with an empty post.
+- `Conjure` button fetches a post from [JSONPlaceholder](https://jsonplaceholder.typicode.com/). The new post adopts a new ID for the local database. The fetched post, must have either a unique title or body.
+
+### Posts list
+
+Bellow the masthead, there is a list of posts. If there are no posts in the database, a message is displayed. Otherwise a list of posts is displayed.
+
+Each list item contains:
+
+- Post ID
+- Post Title
+- Post Body
+- User ID
+- A set of actions:
+  - View Post
+  - Edit Post
+  - Delete Post
+
+From the modal, the user can edit:
+ - Post Title
+ - Post Body
+
+The user can:
+  - Save and close
+  - Reset edits
+  - Delete the post
+  - Exit without saving
+
+When a user tries to delete, or exit without saving, an alert is popping up to warn the user.
+
+The body of the modal counts the characters and words of the current value of the textarea. The body also supports Github Markdown notation.
+
+> At the moment not every element is styled, so some elements might not display properly when displayed in Markdown.
+
+### Toast Message / Notifications
+
+A toast message is displayed for every meaningful action like creating, saving,  deleting, fetching etc.
+
+### Some considerations
+
+- Adding a created/last edited dates for each post. And after that capabilities like history etc are easily achievable.
+- The application is not ready to be deployed. There are some outstanding Typescript issues that need to be resolved before a build version could generated.
+- The application will not run in `React.StrictMode`. Check the [unresolved issues](#known-issues) for more.
+- Only manual testing was performed. Due to lack of time, no unit testing or other testing methods were implemented.
 
 ## Specifications
 
@@ -61,6 +130,7 @@ pure CSS or a framework)
 - 🔴 Run some unit tests
 - 🟢 Add Markdown Support
 - 🟢 Add textarea words/letters count
+- 🟢 Add Search Functionality
 
 > 🟢 Done  <br/>
 > 🟠 Doing <br/>
@@ -68,27 +138,48 @@ pure CSS or a framework)
 
 ## Starting the app
 
-
 To start the app, you will need Node.js and npm or yarn. 
 
 - Make Sure `Node.js` and `npm` are installed. Open a terminal and type `node -v` to see the version of Node.js. If you get an error or your version is older than 16.0.0, you need to download the [latest version](https://nodejs.org/en/download/).
 - Open a terminal in the root directory of the project, and install the npm packages required by running `npm install`.
 - The application has a front end as well as a mock [JSON-server](https://www.npmjs.com/package/json-server) to act as a temporary backend endpoint for the data. We need both running at the same time to be able to view the app.
 
-| Operation | Command |
-|---|---|
-| Start JSON-server | `npm run server` |
-| Start React App | `npm run dev` |
+| Operation | Command | Exposed to localhost? |
+|---|---|---|
+| Start JSON-server | `npm run server` | no |
+| Start JSON-server | `npm run serverLocal` | yes, requires setup |
+| Start React App | `npm run dev` | yes |
+
+### Setup JSON server to be able to work on localhost
+
+Vite supports the feature without any setup. JSONServer requires a local IP that has to be updated in two places:
+- inside `.env` file. For more info, check the TODO `.env` documentation Notice that the port is required.
+- in `package.json`. To replace in `package.json`, see the IP addresses exposed by Vite, and use this. Server port should not be present.
 
 > NOTE: By default, `JSON-server` runs on port 3000. Sometimes the port is not available which might cause the server to run on another port. In that case, create a `.env` file and add: `VITE_SERVER_URL='http://localhost:XXXX'`, where `XXXX` place the port that is mentioned in the terminal. Make sure you restart vite server after any change to `.env` file so that the changes take effect.
 
+### Local Env setup
+
+The project has two optional env variables. See the schema for more.
+
+```
+VITE_LOCALHOST_EXPOSED="http://192.168.0.221:3000"
+VITE_SERVER_URL="http://localhost:3000"
+```
+
+Notice that the port is required.
+
+`VITE_SERVER_URL="http://localhost:3000"` This is the JSONServer url. If there is no value, the app will default to `"http://localhost:3000"`.
+
+`VITE_LOCALHOST_EXPOSED="http://192.168.0.221:3000"` is required if you want to expose the JSONServer to your local network. If this is not setup, the app will not load over Wifi etc.
+
 ## API Schema
 
-TODO
+The API supports sending Posts as well as user, and site settings. Right now there are no user settings available, since there is no login functionality.
+
+TODO See the full schema
 
 ## Diagram Flow
-
-TODO
 
 ```mermaid
 flowchart TD
@@ -148,16 +239,17 @@ For linting this project adopts the [Airbnb JavaScript Style Guide](https://gith
 
 ## Theme
 
-The colors of the theme, are inspired by the color palette used in [Tapioview.com](https://www.tapioview.com/). That being said, I used [TailwindCss color gamuts](https://tailwindcss.com/docs/customizing-colors) and tried to stick as close to the original values as possible.
+The colors of the theme, are inspired by the color palette used in [Tapioview.com](https://www.tapioview.com/). That being said, I used [TailwindCss color gamuts](https://tailwindcss.com/docs/customizing-colors) and tried to stick as close to the original values as possible. 
 
 ## Issues
 
 ### Known Issues
 
-- The Table html element is not ideal for responsive design, so the smartphone screen could use some better UI/UX. One solution could be to recreate the table in either css grid or flex.
+- The application will not run on `React Strict Mode`. The reason is that the `selectPost` function resets on the second rerender. As of now, due to lack of time, I was not able to investigate possible solutions. To preview the app, make sure it is not wrapped in the `<React.StrictMode>` component.
 
 ### Fixed Issues
 
+- The Table html element is not ideal for responsive design, so the smartphone screen could use some better UI/UX. One solution could be to recreate the table in either css grid or flex.
 - Body Textarea is a bit laggy. Here is a resource [talking about it](https://dev.to/kevinkh89/how-to-solve-input-delay-lagging-in-react-j2o)
 - As of now Reset/Save post etc are not working properly. Issue happened at [415920f52eff64a755ce24f88b42d7dba4b4302b](https://github.com/TheoKondak/CRUD-app/tree/415920f52eff64a755ce24f88b42d7dba4b4302b)
 

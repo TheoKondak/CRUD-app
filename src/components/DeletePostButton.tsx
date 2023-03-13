@@ -19,7 +19,7 @@ interface DeletePostButton {
 const DeletePostButton = ({ title, text = '', alertMessage = `Are you sure that you want to delete this post? \n Press OK to delete, or cancel to keep the post`, id, selectPost, reFetchLocal, customOnClick = () => {}, className, icon = true }: DeletePostButton) => {
   return (
     <button
-      title={title || text || 'Delete Post'}
+      title={title || text || 'Delete'}
       className={className ? className : `flex justify-center items-center w-full h-full  absolute inset-0 hover:shadow-2xl`}
       onClick={() => {
         if (window.confirm(alertMessage)) {

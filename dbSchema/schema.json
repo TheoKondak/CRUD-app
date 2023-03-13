@@ -1,0 +1,317 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "settings": {
+      "type": "object",
+      "properties": {
+        "view": {
+          "type": "object",
+          "properties": {
+            "logo": {
+              "type": "object",
+              "properties": {
+                "src": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ]
+                },
+                "width": {
+                  "type": "string"
+                },
+                "height": {
+                  "type": "string"
+                },
+                "alt": {
+                  "type": "string"
+                }
+              },
+              "required": ["src", "width", "height", "alt"]
+            },
+            "theme": {
+              "type": "object",
+              "properties": {
+                "darkThemeByDefault": {
+                  "type": "boolean"
+                }
+              },
+              "required": ["darkThemeByDefault"]
+            },
+            "post": {
+              "type": "object",
+              "properties": {
+                "postPreviewLength": {
+                  "type": "integer"
+                }
+              },
+              "required": ["postPreviewLength"]
+            },
+            "footer": {
+              "type": "object",
+              "properties": {
+                "copyrightInfo": {
+                  "type": "string"
+                },
+                "githubLink": {
+                  "type": "string"
+                },
+                "githubLinkOpensInNewTab": {
+                  "type": "boolean"
+                }
+              },
+              "required": ["copyrightInfo", "githubLink", "githubLinkOpensInNewTab"]
+            }
+          },
+          "required": ["logo", "theme", "post", "footer"]
+        }
+      },
+      "required": ["view"]
+    },
+    "posts": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "body": {
+              "type": "string"
+            }
+          },
+          "required": ["userId", "id", "title", "body"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "body": {
+              "type": "string"
+            }
+          },
+          "required": ["userId", "id", "title", "body"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "body": {
+              "type": "string"
+            }
+          },
+          "required": ["userId", "id", "title", "body"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "body": {
+              "type": "string"
+            }
+          },
+          "required": ["userId", "id", "title", "body"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "body": {
+              "type": "string"
+            }
+          },
+          "required": ["userId", "id", "title", "body"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "body": {
+              "type": "string"
+            }
+          },
+          "required": ["userId", "id", "title", "body"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "body": {
+              "type": "string"
+            }
+          },
+          "required": ["userId", "id", "title", "body"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "body": {
+              "type": "string"
+            }
+          },
+          "required": ["userId", "id", "title", "body"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "body": {
+              "type": "string"
+            }
+          },
+          "required": ["userId", "id", "title", "body"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "body": {
+              "type": "string"
+            }
+          },
+          "required": ["userId", "id", "title", "body"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "body": {
+              "type": "string"
+            }
+          },
+          "required": ["userId", "id", "title", "body"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "body": {
+              "type": "string"
+            }
+          },
+          "required": ["userId", "id", "title", "body"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "integer"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "body": {
+              "type": "string"
+            }
+          },
+          "required": ["userId", "id", "title", "body"]
+        }
+      ]
+    }
+  },
+  "required": ["settings", "posts"]
+}

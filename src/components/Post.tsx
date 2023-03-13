@@ -12,7 +12,7 @@ const Post = ({ post, settings, selectPost, reFetchLocal }: PostComponent) => {
   const { postSettings, triggerPostModal, isEditablePost } = settings;
   return useMemo(
     () => (
-      <div className={` bg-primary-100 dark:bg-primary-800 text-primary-900 dark:text-white shadow-2xl rounded-xl grid grid-cols-table lg:grid-cols-table-lg my-2 first:mt-0 last:mb-0`}>
+      <div className={` bg-primary-100 dark:bg-slate-800 text-primary-900 dark:text-white shadow-2xl rounded-xl grid grid-cols-table lg:grid-cols-table-lg my-2 first:mt-0 last:mb-0`}>
         <div className="p-2 pl-4 flex items-center justify-center">
           <span>{id}</span>
         </div>
