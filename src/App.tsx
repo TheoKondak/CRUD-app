@@ -121,17 +121,17 @@ function App() {
   };
 
   return (
-    <div className="bg-primary-100 dark:bg-primary-800 flex flex-col items-center justify-start w-full h-full ">
+    <div className="bg-primary-100 dark:bg-primary-800 flex flex-col items-center justify-start w-full h-screen ">
       {posts && settings && externalPosts ? (
-        <div className="w-full">
+        <div className="w-full h-full inset-0 fixed overflow-hidden flex flex-col items-stretch justify-between backdrop-blur-md">
           <Header logo={settings.view.logo} isDarkTheme={isDarkTheme} setIsDarkTheme={setIsDarkTheme} />
           <div className="bg-primary-800 dark:bg-primary-900 flex flex-col md:flex-row items-center justify-center gap-5 w-5/6 mt-4 -mb-8 md:-mb-10 md:m-10 mx-auto md:mx-auto pb-16 p-10 md:pt-20 rounded-md shadow-2xl">
             <div className="w-5/6 flex items-center justify-center">
               <Search placeholder="Search for a post" onChange={handleSearchFieldUpdate} setPosts={setPosts} />
             </div>
-            <div className="w-full flex gap-2 items-center justify-center">
+            <div className="max-w-max flex gap-2 items-center justify-center  whitespace-nowrap">
               <button
-                className="btn btn-default block"
+                className="btn btn-default block max-w-max"
                 title="Add a new post"
                 onClick={() => {
                   addPost();
@@ -139,12 +139,12 @@ function App() {
                 Add Post
               </button>
 
-              <button className="btn btn-default block" title="Fetch a random post from JSONPlaceholder" onClick={() => addRandomExternalPost(posts, externalPosts)}>
+              <button className="btn btn-default block max-w-max whitespace-nowrap" title="Fetch a random post from JSONPlaceholder" onClick={() => addRandomExternalPost(posts, externalPosts)}>
                 Conjure Post
               </button>
             </div>
           </div>
-          <div className="flex items-center justify-center h-4/6 max-w-5/6">
+          <div className="flex items-start justify-center max-w-5/6 h-5/6 overflow-y-auto">
             <Posts posts={posts.filter((post) => (search.length === 0 ? post : post.title.toLowerCase().includes(search)))} settings={{ postSettings: settings.view.post, triggerPostModal, isEditablePost }} selectPost={selectPost} reFetchLocal={reFetchLocal} />
           </div>
 

@@ -10,10 +10,9 @@ const Post = ({ post, settings, selectPost, reFetchLocal }: PostComponent) => {
   const { id, title, body, userId } = post;
 
   const { postSettings, triggerPostModal, isEditablePost } = settings;
-  // console.log(userId);
   return useMemo(
     () => (
-      <tr className={` bg-primary-100 dark:bg-primary-800 text-primary-900 dark:text-white border-b-[1px] last:border-b-0 border-slate-300 shadow-2xl`}>
+      <tr className={` bg-primary-100 dark:bg-primary-800 text-primary-900 dark:text-white border-b-[1px] last:border-b-0 border-slate-300 shadow-2xl my-10`}>
         <td className="p-2 pl-4 ">{id}</td>
         <td className="p-2">{title}</td>
         <td className="p-2 max-h-[100px] overflow-y-auto">

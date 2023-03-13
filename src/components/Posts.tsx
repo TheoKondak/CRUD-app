@@ -1,17 +1,19 @@
+import Post from './Post';
+
 const Posts: React.FC<Posts> = ({ posts, settings, selectPost, reFetchLocal }) => {
   return (
-    <div id="posts" className="flex flex-column items-center justify-center  lg:max-w-screen-md xl:max-w-7xl m-4 mt-0 md:mt-0 mx-auto md:m-10 w-full ">
+    <div id="posts" className="flex flex-column items-center justify-center lg:max-w-screen-md xl:max-w-7xl m-4 mt-0 md:mt-0 mx-auto md:m-10 w-full">
       {posts.length > 0 ? (
-        <table className="table-auto w-5/6 text-sm text-left backdrop-blur-md shadow-2xl">
+        <table className="table-auto w-full text-sm text-left backdrop-blur-md  relative border-collapse">
           <thead>
-            <tr className="bg-primary-600 dark:bg-primary-900 text-white ">
-              <th className="p-2 max-w-max text-left rounded-tl-md">Post ID</th>
-              <th className="p-2">Title</th>
-              <th className="p-2">Body</th>
-              <th className="p-2 max-w-max text-center">Created By</th>
-              <th className="p-2 max-w-max text-center">View</th>
-              <th className="p-2 max-w-max text-center">Edit</th>
-              <th className="p-2 max-w-max text-center rounded-tr-md">Delete</th>
+            <tr className=" ">
+              <th className="p-4 max-w-max text-left whitespace-nowrap rounded-tl-md sticky top-0 bg-primary-600 dark:bg-primary-900 text-white z-10">Post ID</th>
+              <th className="p-4 max-w-max whitespace-nowrap sticky top-0 bg-primary-600 dark:bg-primary-900 text-white z-10">Title</th>
+              <th className="p-4 max-w-max whitespace-nowrap sticky top-0 bg-primary-600 dark:bg-primary-900 text-white z-10">Body</th>
+              <th className="p-4 max-w-max whitespace-nowrap text-center sticky top-0 bg-primary-600 dark:bg-primary-900 text-white z-10">Created By</th>
+              <th className="p-4 max-w-max whitespace-nowrap text-center sticky top-0 bg-primary-600 dark:bg-primary-900 text-white z-10">View</th>
+              <th className="p-4 max-w-max whitespace-nowrap text-center sticky top-0 bg-primary-600 dark:bg-primary-900 text-white z-10">Edit</th>
+              <th className="p-4 max-w-max whitespace-nowrap text-center rounded-tr-md sticky top-0 bg-primary-600 dark:bg-primary-900 text-white z-10">Delete</th>
             </tr>
           </thead>
           <tbody>
