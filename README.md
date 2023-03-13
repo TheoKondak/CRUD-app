@@ -1,4 +1,10 @@
 - [Crud App](#crud-app)
+  - [About the app](#about-the-app)
+    - [Header](#header)
+    - [Masthead](#masthead)
+    - [Posts list](#posts-list)
+    - [Toast Message / Notifications](#toast-message--notifications)
+    - [Some considerations](#some-considerations)
   - [Specifications](#specifications)
     - [Bonus:](#bonus)
     - [Extra](#extra)
@@ -28,8 +34,68 @@
 
 # Crud App
 
-TODO some improvements could be adding a created/last edited dates. And after that capabilities like history etc are easily achievable.
-TODO The application is not ready to be deployed. There are some outstanding Typescript issues that need to be resolved before a build version could generated.
+
+## About the app
+
+This is a simple crud app, with a minimal approach to design. For displaying and editing posts, a modal was created.
+
+The default view of the application is a simple CRUD view. 
+
+### Header
+
+On top there is a header with a logo, and a dark mode toggle button. 
+
+- The logo settings, like source, alt, dimensions are being fetched by the API Server.
+
+### Masthead
+
+Then there is a masthead with a search input field, an `Add Post` button and a `Conjure` button.
+
+- The search field searches the between the titles of the post.
+- `Add Post`, pops the modal with an empty post.
+- `Conjure` button fetches a post from [JSONPlaceholder](https://jsonplaceholder.typicode.com/). The new post adopts a new ID for the local database. The fetched post, must have either a unique title or body.
+
+### Posts list
+
+Bellow the masthead, there is a list of posts. If there are no posts in the database, a message is displayed. Otherwise a list of posts is displayed.
+
+Each list item contains:
+
+- Post ID
+- Post Title
+- Post Body
+- User ID
+- A set of actions:
+  - View Post
+  - Edit Post
+  - Delete Post
+
+From the modal, the user can edit:
+ - Post Title
+ - Post Body
+
+The user can:
+  - Save and close
+  - Reset edits
+  - Delete the post
+  - Exit without saving
+
+When a user tries to delete, or exit without saving, an alert is popping up to warn the user.
+
+The body of the modal counts the characters and words of the current value of the textarea. The body also supports Github Markdown notation.
+
+> At the moment not every element is styled, so some elements might not display properly when displayed in Markdown.
+
+### Toast Message / Notifications
+
+A toast message is displayed for every meaningful action like creating, saving,  deleting, fetching etc.
+
+### Some considerations
+
+- Adding a created/last edited dates for each post. And after that capabilities like history etc are easily achievable.
+- The application is not ready to be deployed. There are some outstanding Typescript issues that need to be resolved before a build version could generated.
+- The application will not run in `React.StrictMode`. Check the [unresolved issues](#known-issues) for more.
+- Only manual testing was performed. Due to lack of time, no unit testing or other testing methods were implemented.
 
 ## Specifications
 
@@ -61,13 +127,13 @@ pure CSS or a framework)
 - 🔴 Run some unit tests
 - 🟢 Add Markdown Support
 - 🟢 Add textarea words/letters count
+- 🟢 Add Search Functionality
 
 > 🟢 Done  <br/>
 > 🟠 Doing <br/>
 > 🔴 ToDo <br/>
 
 ## Starting the app
-
 
 To start the app, you will need Node.js and npm or yarn. 
 
@@ -84,11 +150,11 @@ To start the app, you will need Node.js and npm or yarn.
 
 ## API Schema
 
-TODO
+The API supports sending Posts as well as user, and site settings. Right now there are no user settings available, since there is no login functionality.
+
+TODO See the full schema
 
 ## Diagram Flow
-
-TODO
 
 ```mermaid
 flowchart TD
@@ -148,16 +214,17 @@ For linting this project adopts the [Airbnb JavaScript Style Guide](https://gith
 
 ## Theme
 
-The colors of the theme, are inspired by the color palette used in [Tapioview.com](https://www.tapioview.com/). That being said, I used [TailwindCss color gamuts](https://tailwindcss.com/docs/customizing-colors) and tried to stick as close to the original values as possible.
+The colors of the theme, are inspired by the color palette used in [Tapioview.com](https://www.tapioview.com/). That being said, I used [TailwindCss color gamuts](https://tailwindcss.com/docs/customizing-colors) and tried to stick as close to the original values as possible. 
 
 ## Issues
 
 ### Known Issues
 
-- The Table html element is not ideal for responsive design, so the smartphone screen could use some better UI/UX. One solution could be to recreate the table in either css grid or flex.
+- The application will not run on `React Strict Mode`. The reason is that the `selectPost` function resets on the second rerender. As of now, due to lack of time, I was not able to investigate possible solutions. To preview the app, make sure it is not wrapped in the `<React.StrictMode>` component.
 
 ### Fixed Issues
 
+- The Table html element is not ideal for responsive design, so the smartphone screen could use some better UI/UX. One solution could be to recreate the table in either css grid or flex.
 - Body Textarea is a bit laggy. Here is a resource [talking about it](https://dev.to/kevinkh89/how-to-solve-input-delay-lagging-in-react-j2o)
 - As of now Reset/Save post etc are not working properly. Issue happened at [415920f52eff64a755ce24f88b42d7dba4b4302b](https://github.com/TheoKondak/CRUD-app/tree/415920f52eff64a755ce24f88b42d7dba4b4302b)
 
