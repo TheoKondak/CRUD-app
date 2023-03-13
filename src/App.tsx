@@ -150,7 +150,7 @@ function App() {
 
           <Footer settings={settings.view.footer} />
 
-          <BaseModalWrapper settings={{ triggerPostModal, modalVisible, isEditablePost, setModalVisible, editablePost, reFetchLocal, selectPost, setEditablePost }} post={post} setPost={setPost} />
+          <BaseModalWrapper settings={{ triggerPostModal, modalVisible, isEditablePost, setModalVisible, editablePost, reFetchLocal, selectPost, setEditablePost, postTitleLength: settings.view.post.postTitleLength }} post={post} setPost={setPost} />
           <ToastContainer position="top-center" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme={isDarkTheme ? 'dark' : 'light'} />
         </div>
       ) : (

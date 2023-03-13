@@ -14,9 +14,10 @@ type Props = {
   setModalVisible: Function;
   post: Post;
   reFetchLocal: Function;
+  postTitleLength: Object;
 };
 
-const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal }: Props) => {
+const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal, postTitleLength }: Props) => {
   const unchangedPost = post;
   const [postTitle, setPostTitle] = useState(post.title);
   const [postBody, setPostBody] = useState(post.body);
@@ -97,7 +98,7 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal }: Props) =>
   return (
     <form id={`post-${post.id}`} className={`relative h-full w-full text-white  px-0 py-4 mx-auto z-20`}>
       <div id={`post-${post.id}-header`} className=" flex items-center justify-between">
-        <Input onBlur={onBlurInputTitleUpdate} value={postTitle} />
+        <Input onBlur={onBlurInputTitleUpdate} value={postTitle} postTitleLength={postTitleLength} />
       </div>
       <button name="Close Post" className="absolute -top-5 -right-5 w-7 h-7 flex items-center justify-center hover:cursor-pointer bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-white shadow-lg rounded-full" onClick={onCancel}>
         <VscCloseAll />
