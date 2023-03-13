@@ -1,3 +1,27 @@
+interface Posts {
+  concat(newPost: { userId: number | void; id: number | void; title: string; body: string }): React.SetStateAction<Posts | null>;
+  map(arg0: (post: any) => any): unknown;
+  filter(arg0: (post: any) => boolean): Post;
+  posts: Post[] | null;
+  settings: {
+    postSettings: PostSettings | null;
+    triggerPostModal: React.MouseEventHandler<HTMLDivElement>;
+    isEditablePost: React.MouseEventHandler<HTMLDivElement>;
+    setFormInUpdateMode: Function;
+  };
+  selectPost: Function;
+  reFetchLocal: Function;
+}
+
+interface Post {
+  pop(): unknown;
+  id: number;
+  title: String;
+  body: String;
+  userId: number;
+  reFetchLocal: Function;
+}
+
 // Settings
 
 interface Settings {

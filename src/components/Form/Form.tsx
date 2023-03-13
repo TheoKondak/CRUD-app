@@ -14,11 +14,9 @@ type Props = {
   setModalVisible: Function;
   post: Post;
   reFetchLocal: Function;
-  setPosts: Function;
-  posts: Post[];
 };
 
-const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal, posts, setPosts }: Props) => {
+const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal }: Props) => {
   const unchangedPost = post;
   const [postTitle, setPostTitle] = useState(post.title);
   const [postBody, setPostBody] = useState(post.body);
@@ -40,10 +38,11 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal, posts, setP
         }
       } else {
         const updatedPost = { ...post, title: postTitle, body: postBody };
-        postsService.upd(`posts/${post.id}`, updatedPost);
-        isEditablePost(false);
-        setModalVisible(false);
-        setPosts(posts.concat(updatedPost)).then(() => reFetchLocal());
+        postsService.upd(`posts/${post.id}`, updatedPost).then(() => {
+          reFetchLocal();
+          isEditablePost(false);
+          setModalVisible(false);
+        });
       }
     } else {
       if (postTitle.length === 0) {
@@ -54,10 +53,12 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal, posts, setP
         }
       } else {
         const updatedPost = { ...post, title: postTitle, body: postBody };
-        postsService.create(updatedPost).then(() => reFetchLocal());
-        toast('Post Saved');
-        isEditablePost(false);
-        setModalVisible(false);
+        postsService.create(updatedPost).then(() => {
+          reFetchLocal();
+          toast('Post Saved');
+          isEditablePost(false);
+          setModalVisible(false);
+        });
       }
     }
   };
