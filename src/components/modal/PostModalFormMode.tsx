@@ -25,7 +25,20 @@ const PostModalFormMode: React.FC<PostModalFormMode> = ({ settings, post }) => {
       </div>
     );
   } else {
-    return <div></div>;
+    return (
+      <div className="w-full h-full flex flex-col items-center justify-center">
+        <div className="bg-white dark:bg-slate-700 text-primary-600 dark:text-primary-100 p-10 z-20 rounded-md">
+          <h2>
+            Oups, this is embarrassing, <br /> Failed to load Modal.
+          </h2>
+          <div>
+            <h3>Expected Post but received:</h3>
+            <p>{post ? post.toString() : 'No available post'}</p>
+            <span>Typeof Post: {typeof post}</span>
+          </div>
+        </div>
+      </div>
+    );
   }
 };
 
