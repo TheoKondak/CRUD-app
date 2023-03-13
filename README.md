@@ -153,10 +153,8 @@ To start the app, you will need Node.js and npm or yarn.
 ### Setup JSON server to be able to work on localhost
 
 Vite supports the feature without any setup. JSONServer requires a local IP that has to be updated in two places:
-- inside `.env` file. For more info, check the TODO `.env` documentation Notice that the port is required.
+- inside `.env` file. For more info, check the  [`.env` documentation](#local-env-setup). Notice that the port is required.
 - in `package.json`. To replace in `package.json`, see the IP addresses exposed by Vite, and use this. Server port should not be present.
-
-> NOTE: By default, `JSON-server` runs on port 3000. Sometimes the port is not available which might cause the server to run on another port. In that case, create a `.env` file and add: `VITE_SERVER_URL='http://localhost:XXXX'`, where `XXXX` place the port that is mentioned in the terminal. Make sure you restart vite server after any change to `.env` file so that the changes take effect.
 
 ### Local Env setup
 
@@ -177,7 +175,7 @@ Notice that the port is required.
 
 The API supports sending Posts as well as user, and site settings. Right now there are no user settings available, since there is no login functionality.
 
-TODO See the full schema
+See the [full schema](https://github.com/TheoKondak/CRUD-app/blob/main/dbSchema/schema.json)
 
 ## Diagram Flow
 
