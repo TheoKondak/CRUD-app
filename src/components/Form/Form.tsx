@@ -95,7 +95,7 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal }: Props) =>
   const onBlurTextareaBodyUpdate = (event) => setPostBody(event.target.value);
 
   return (
-    <form id={`post-${post.id}`} className={`relative h-full w-full text-white  px-4 py-4 mx-auto z-20`}>
+    <form id={`post-${post.id}`} className={`relative h-full w-full text-white  px-0 py-4 mx-auto z-20`}>
       <div id={`post-${post.id}-header`} className=" flex items-center justify-between">
         <Input onBlur={onBlurInputTitleUpdate} value={postTitle} />
       </div>
@@ -107,26 +107,26 @@ const Form = ({ post, isEditablePost, setModalVisible, reFetchLocal }: Props) =>
         <TextArea onBlur={onBlurTextareaBodyUpdate} value={postBody} />
       </div>
       <div className=" w-full flex items-center justify-end flex-wrap md:flex-nowrap gap-2 my-2">
-        <button title="Save Post" className={`btn btn-success`} onClick={onSubmitAndClose}>
+        <button title="Save Post" className={`btn btn-success  btn-sm`} onClick={onSubmitAndClose}>
           <VscSaveAll className="inline-block w-4 h-4 mr-2" /> Save & Close
         </button>
         {/* <button title="Save Post" className={`${formButtonStyles.basicButtonStyles} ${formButtonStyles.success}`} onClick={onSubmit}>
           <VscSaveAll className="inline-block w-4 h-4 mr-2" /> Save
         </button> */}
 
-        <DeletePostButton id={post.id} reFetchLocal={reFetchLocal} className={`btn btn-danger`} customOnClick={setModalVisible} text="Delete Post" />
-
         <button
           title="Reset"
-          className={`btn btn-danger`}
+          className={`btn btn-slate btn-sm`}
           onClick={(event) => {
             onResetChanges(event);
           }}>
           <VscDebugRestart className="inline-block w-4 h-4 mr-2" /> Reset
         </button>
-        <button title="Cancel" className={`btn btn-default`} onClick={onCancel}>
+        <DeletePostButton id={post.id} reFetchLocal={reFetchLocal} className={`btn btn-danger  btn-sm`} customOnClick={setModalVisible} text="Delete" />
+
+        {/* <button title="Cancel" className={`btn btn-default`} onClick={onCancel}>
           <VscError className="inline-block" /> Cancel
-        </button>
+        </button> */}
       </div>
     </form>
   );
