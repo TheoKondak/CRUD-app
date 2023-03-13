@@ -9,6 +9,8 @@
     - [Bonus:](#bonus)
     - [Extra](#extra)
   - [Starting the app](#starting-the-app)
+    - [Setup JSON server to be able to work on localhost](#setup-json-server-to-be-able-to-work-on-localhost)
+    - [Local Env setup](#local-env-setup)
   - [API Schema](#api-schema)
   - [Diagram Flow](#diagram-flow)
   - [Technologies and Packages](#technologies-and-packages)
@@ -30,6 +32,7 @@
     - [Fix input lag for Input and Textarea](#fix-input-lag-for-input-and-textarea)
     - [React Markdown](#react-markdown)
     - [React Toastify](#react-toastify)
+
 
 
 # Crud App
@@ -141,12 +144,34 @@ To start the app, you will need Node.js and npm or yarn.
 - Open a terminal in the root directory of the project, and install the npm packages required by running `npm install`.
 - The application has a front end as well as a mock [JSON-server](https://www.npmjs.com/package/json-server) to act as a temporary backend endpoint for the data. We need both running at the same time to be able to view the app.
 
-| Operation | Command |
-|---|---|
-| Start JSON-server | `npm run server` |
-| Start React App | `npm run dev` |
+| Operation | Command | Exposed to localhost? |
+|---|---|---|
+| Start JSON-server | `npm run server` | no |
+| Start JSON-server | `npm run serverLocal` | yes, requires setup |
+| Start React App | `npm run dev` | yes |
+
+### Setup JSON server to be able to work on localhost
+
+Vite supports the feature without any setup. JSONServer requires a local IP that has to be updated in two places:
+- inside `.env` file. For more info, check the TODO `.env` documentation Notice that the port is required.
+- in `package.json`. To replace in `package.json`, see the IP addresses exposed by Vite, and use this. Server port should not be present.
 
 > NOTE: By default, `JSON-server` runs on port 3000. Sometimes the port is not available which might cause the server to run on another port. In that case, create a `.env` file and add: `VITE_SERVER_URL='http://localhost:XXXX'`, where `XXXX` place the port that is mentioned in the terminal. Make sure you restart vite server after any change to `.env` file so that the changes take effect.
+
+### Local Env setup
+
+The project has two optional env variables. See the schema for more.
+
+```
+VITE_LOCALHOST_EXPOSED="http://192.168.0.221:3000"
+VITE_SERVER_URL="http://localhost:3000"
+```
+
+Notice that the port is required.
+
+`VITE_SERVER_URL="http://localhost:3000"` This is the JSONServer url. If there is no value, the app will default to `"http://localhost:3000"`.
+
+`VITE_LOCALHOST_EXPOSED="http://192.168.0.221:3000"` is required if you want to expose the JSONServer to your local network. If this is not setup, the app will not load over Wifi etc.
 
 ## API Schema
 
