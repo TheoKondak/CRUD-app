@@ -32,7 +32,12 @@
                   "type": "string"
                 }
               },
-              "required": ["src", "width", "height", "alt"]
+              "required": [
+                "src",
+                "width",
+                "height",
+                "alt"
+              ]
             },
             "theme": {
               "type": "object",
@@ -41,16 +46,24 @@
                   "type": "boolean"
                 }
               },
-              "required": ["darkThemeByDefault"]
+              "required": [
+                "darkThemeByDefault"
+              ]
             },
             "post": {
               "type": "object",
               "properties": {
+                "postTitleLength": {
+                  "type": "integer"
+                },
                 "postPreviewLength": {
                   "type": "integer"
                 }
               },
-              "required": ["postPreviewLength"]
+              "required": [
+                "postTitleLength",
+                "postPreviewLength"
+              ]
             },
             "footer": {
               "type": "object",
@@ -65,13 +78,24 @@
                   "type": "boolean"
                 }
               },
-              "required": ["copyrightInfo", "githubLink", "githubLinkOpensInNewTab"]
+              "required": [
+                "copyrightInfo",
+                "githubLink",
+                "githubLinkOpensInNewTab"
+              ]
             }
           },
-          "required": ["logo", "theme", "post", "footer"]
+          "required": [
+            "logo",
+            "theme",
+            "post",
+            "footer"
+          ]
         }
       },
-      "required": ["view"]
+      "required": [
+        "view"
+      ]
     },
     "posts": {
       "type": "array",
@@ -92,7 +116,12 @@
               "type": "string"
             }
           },
-          "required": ["userId", "id", "title", "body"]
+          "required": [
+            "userId",
+            "id",
+            "title",
+            "body"
+          ]
         },
         {
           "type": "object",
@@ -110,208 +139,18 @@
               "type": "string"
             }
           },
-          "required": ["userId", "id", "title", "body"]
-        },
-        {
-          "type": "object",
-          "properties": {
-            "userId": {
-              "type": "integer"
-            },
-            "id": {
-              "type": "integer"
-            },
-            "title": {
-              "type": "string"
-            },
-            "body": {
-              "type": "string"
-            }
-          },
-          "required": ["userId", "id", "title", "body"]
-        },
-        {
-          "type": "object",
-          "properties": {
-            "userId": {
-              "type": "integer"
-            },
-            "id": {
-              "type": "integer"
-            },
-            "title": {
-              "type": "string"
-            },
-            "body": {
-              "type": "string"
-            }
-          },
-          "required": ["userId", "id", "title", "body"]
-        },
-        {
-          "type": "object",
-          "properties": {
-            "userId": {
-              "type": "integer"
-            },
-            "id": {
-              "type": "integer"
-            },
-            "title": {
-              "type": "string"
-            },
-            "body": {
-              "type": "string"
-            }
-          },
-          "required": ["userId", "id", "title", "body"]
-        },
-        {
-          "type": "object",
-          "properties": {
-            "userId": {
-              "type": "integer"
-            },
-            "id": {
-              "type": "integer"
-            },
-            "title": {
-              "type": "string"
-            },
-            "body": {
-              "type": "string"
-            }
-          },
-          "required": ["userId", "id", "title", "body"]
-        },
-        {
-          "type": "object",
-          "properties": {
-            "userId": {
-              "type": "integer"
-            },
-            "id": {
-              "type": "integer"
-            },
-            "title": {
-              "type": "string"
-            },
-            "body": {
-              "type": "string"
-            }
-          },
-          "required": ["userId", "id", "title", "body"]
-        },
-        {
-          "type": "object",
-          "properties": {
-            "userId": {
-              "type": "integer"
-            },
-            "id": {
-              "type": "integer"
-            },
-            "title": {
-              "type": "string"
-            },
-            "body": {
-              "type": "string"
-            }
-          },
-          "required": ["userId", "id", "title", "body"]
-        },
-        {
-          "type": "object",
-          "properties": {
-            "userId": {
-              "type": "integer"
-            },
-            "id": {
-              "type": "integer"
-            },
-            "title": {
-              "type": "string"
-            },
-            "body": {
-              "type": "string"
-            }
-          },
-          "required": ["userId", "id", "title", "body"]
-        },
-        {
-          "type": "object",
-          "properties": {
-            "userId": {
-              "type": "integer"
-            },
-            "id": {
-              "type": "integer"
-            },
-            "title": {
-              "type": "string"
-            },
-            "body": {
-              "type": "string"
-            }
-          },
-          "required": ["userId", "id", "title", "body"]
-        },
-        {
-          "type": "object",
-          "properties": {
-            "userId": {
-              "type": "integer"
-            },
-            "id": {
-              "type": "integer"
-            },
-            "title": {
-              "type": "string"
-            },
-            "body": {
-              "type": "string"
-            }
-          },
-          "required": ["userId", "id", "title", "body"]
-        },
-        {
-          "type": "object",
-          "properties": {
-            "userId": {
-              "type": "integer"
-            },
-            "id": {
-              "type": "integer"
-            },
-            "title": {
-              "type": "string"
-            },
-            "body": {
-              "type": "string"
-            }
-          },
-          "required": ["userId", "id", "title", "body"]
-        },
-        {
-          "type": "object",
-          "properties": {
-            "userId": {
-              "type": "integer"
-            },
-            "id": {
-              "type": "integer"
-            },
-            "title": {
-              "type": "string"
-            },
-            "body": {
-              "type": "string"
-            }
-          },
-          "required": ["userId", "id", "title", "body"]
+          "required": [
+            "userId",
+            "id",
+            "title",
+            "body"
+          ]
         }
       ]
     }
   },
-  "required": ["settings", "posts"]
+  "required": [
+    "settings",
+    "posts"
+  ]
 }
