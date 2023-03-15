@@ -5,7 +5,7 @@ const Posts: React.FC<Posts> = ({ posts, settings, selectPost, reFetchLocal }) =
     <div id="posts" className="flex flex-column items-center justify-center lg:max-w-screen-md xl:max-w-7xl m-4 mt-0 md:mt-0 mx-auto md:m-10 w-full">
       {posts.length > 0 ? (
         <div className="w-full text-sm text-left backdrop-blur-md  relative">
-          <div id="posts-head" className="grid grid-cols-table lg:grid-cols-table-lg sticky top-0 z-20 ">
+          <div id="posts-head" className="hidden md:grid grid-cols-table lg:grid-cols-table-lg sticky top-0 z-20">
             <div id="post-id" className="p-4 text-left whitespace-nowrap rounded-tl-md rounded-bl-md  bg-tertiary-600 mb-5 dark:bg-slate-700 text-white flex items-center justify-center">
               <span>Post ID</span>
             </div>

@@ -16,8 +16,8 @@ interface Posts {
 interface Post {
   pop(): unknown;
   id: number;
-  title: String;
-  body: String;
+  title: string;
+  body: string;
   userId: number;
   reFetchLocal: Function;
 }
